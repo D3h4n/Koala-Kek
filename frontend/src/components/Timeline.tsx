@@ -79,9 +79,12 @@ export default function Timeline({ user }:Props) {
         let newUser:User|null;
 
         posts.forEach((post)=>{
-            newUser = getUser(post.userID);
-            if(newUser){
-                map.set(post.userID, newUser);
+            if(!map.has(post.userID)){
+                newUser = getUser(post.userID);
+                
+                if(newUser){
+                    map.set(post.userID, newUser);
+                }
             }
         })
 
