@@ -1,43 +1,20 @@
 import React, { useState, useEffect } from 'react'
-import { post } from '../interfaces'
+import Timeline from './Timeline'
+import { defaultIcon, defaultUser, User } from '../defintions'
+import './App.css'
 
 export default function App() {
-    const [posts, setPosts] = useState<post[]>([]);
+    const [user, setUser] = useState<User>(defaultUser)
+
 
     useEffect(()=>{
         console.log('App loaded');
-        
-        let post1:post = {
-            text: "I like cheese",
-            userID: "1",
-            hasImg: false
-        }
-
-        let post2:post = {
-            text: "I have a dream",
-            userID: "2",
-            hasImg: false
-        }
-
-        let post3:post = {
-            text: "Coding is super fun",
-            userID: "3",
-            hasImg: false
-        }
-
-        setPosts([post1, post2, post3]);
+        setUser({userID: '1', userName: 'Dehan', icon: defaultIcon });
     }, [])
 
-    const timelinePosts = posts.map((post, idx) => {
-        return (<div key = {idx}>
-            <h4>User: {post.userID}</h4>
-            <p>{post.text}</p>
-        </div>)
-    })
-    
     return (
         <div>
-            { timelinePosts }
+            <Timeline user={user}/>
         </div>
     )
 }

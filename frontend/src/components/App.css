@@ -1,0 +1,18 @@
+.post{
+    display: grid;
+    grid-template-columns: 50px 100px 500px;
+    grid-template-rows: repeat(2, 50px);
+
+    align-items: center;
+}
+
+.post-user-icon{
+    height: 40px;
+    width: auto;
+    border-radius: 50%;
+}
+
+.post-text{
+    grid-column: 1 / 4;
+    grid-row: 2;
+}
