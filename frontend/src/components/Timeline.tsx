@@ -70,6 +70,18 @@ export default function Timeline({ user }:Props) {
                 text: "I don't exist",
                 userID: "5",
                 hasImg: false
+            },
+            {
+                text: "This is my second post",
+                userID: "1",
+                hasImg: true,
+                imgs: [defaultIcon, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8v9ILAxQmocV9nN7ZOkEOmiiinKz73NFpsw&usqp=CAU"]
+            },
+            {
+                text: '#new profile pick',
+                userID: '4',
+                hasImg: true,
+                imgs: [defaultIcon]
             }
         ]);
     }, [user])
@@ -81,7 +93,7 @@ export default function Timeline({ user }:Props) {
         posts.forEach((post)=>{
             if(!map.has(post.userID)){
                 newUser = getUser(post.userID);
-                
+
                 if(newUser){
                     map.set(post.userID, newUser);
                 }
