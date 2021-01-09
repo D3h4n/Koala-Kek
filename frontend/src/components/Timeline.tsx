@@ -45,11 +45,6 @@ export default function Timeline({ user }:Props) {
         }
     } 
 
-    const findUser = (id: string):User | undefined => {
-        let a = usersMap.get(id);
-        return a;
-    }
-
     useEffect(()=>{
         setPosts([{
                 text: "I like cheese",
@@ -97,7 +92,7 @@ export default function Timeline({ user }:Props) {
 
     return (
         <div>
-            { posts.map((post, idx) => <Post key={idx} post={post} user={findUser(post.userID)}/>) }
+            { posts.map((post, idx) => <Post key={idx} post={post} user={usersMap.get(post.userID)}/>) }
         </div>
     )
 }
