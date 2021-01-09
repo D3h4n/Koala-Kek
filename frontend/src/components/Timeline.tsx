@@ -75,18 +75,17 @@ export default function Timeline({ user }:Props) {
     }, [user])
 
     useEffect(()=>{
+        let map:Map<string, User> = new Map();
         let newUser:User|null;
 
         posts.forEach((post)=>{
-            if(!usersMap.has(post.userID)){
-                newUser = getUser(post.userID);
-                if(newUser){
-                    usersMap.set(post.userID, newUser);
-                }
+            newUser = getUser(post.userID);
+            if(newUser){
+                map.set(post.userID, newUser);
             }
         })
 
-        setUsersMap(new Map(usersMap));
+        setUsersMap(map);
     }, [posts]);
 
     return (
