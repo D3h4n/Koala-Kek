@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { TL_Post, User } from '../defintions'
 
 interface Props{
-    getUser: () => User;
+    user: User
 }
 
-export default function AddPost({ getUser }: Props){
+export default function AddPost({ user }: Props){
     const [isVisible, setVisible] = useState<boolean>(false);
     const [formData, setFormData] = useState<TL_Post>({text: '', userID: '', hasImg: false, imgs: []});
     const textLimit = 200;
@@ -18,7 +18,7 @@ export default function AddPost({ getUser }: Props){
     function handleChange(event: React.ChangeEvent<any>){
         let { value, name } = event.target;
         if((formData.text.length < textLimit || value.length < formData.text.length) && hasKey(formData, name)){
-            setFormData({...formData, [name]: value.slice(0, Math.min(200, value.length)), userID: getUser().userID});
+            setFormData({...formData, [name]: value.slice(0, Math.min(200, value.length)), userID: user.userID});
         }
     }
 
@@ -33,7 +33,7 @@ export default function AddPost({ getUser }: Props){
     }
 
     function handleClear(){
-        setFormData({text: '', userID: getUser().userID, hasImg: false, imgs: []})
+        setFormData({text: '', userID: user.userID, hasImg: false, imgs: []})
     }
 
     function handleCancel(){

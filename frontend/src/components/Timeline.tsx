@@ -5,45 +5,12 @@ import { TL_Post, User, defaultIcon } from '../defintions'
 
 interface Props{
     user: User
+    getUser: (id: string) => User | null
 }
 
-export default function Timeline({ user }:Props) {
+export default function Timeline({ user, getUser }:Props) {
     const [ usersMap, setUsersMap ] = useState<Map<string, User>>(new Map());
     const [ posts, setPosts ] = useState<TL_Post[]>([]);
-
-    const getUser = (id: string):User | null => {
-        if(id === '1'){
-            return{
-                userID: '1',
-                userName: 'Dehan',
-                icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8v9ILAxQmocV9nN7ZOkEOmiiinKz73NFpsw&usqp=CAU"
-            }
-        }
-        else if(id === '2'){
-            return{
-                userID: '2',
-                userName: 'Nerd231',
-                icon: defaultIcon
-            }
-        }
-        else if(id === '3'){
-            return{
-                userID: '3',
-                userName: 'Pearson',
-                icon: defaultIcon
-            }
-        }
-        else if(id === '4'){
-            return{
-                userID: '4',
-                userName: 'Hackerman',
-                icon: defaultIcon
-            }
-        }
-        else{
-            return null;
-        }
-    } 
 
     useEffect(()=>{
         setPosts([{
@@ -101,7 +68,7 @@ export default function Timeline({ user }:Props) {
         })
 
         setUsersMap(map);
-    }, [posts]);
+    }, [posts, getUser]);
 
     return (
         <div className='timeline-container'>

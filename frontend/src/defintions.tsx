@@ -11,5 +11,10 @@ export interface User{
     icon: string
 }
 
+export interface Login{
+    userName: string,
+    passWord: string
+}
+
 export const defaultIcon = "https://www.xovi.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
 export const defaultUser = {userID: '-1', userName: 'User not found', icon: defaultIcon}

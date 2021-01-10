@@ -9,13 +9,17 @@
     grid-template-columns: 25vw 50vw 25vw;
     background-color:rgb(40, 40, 45);
 }
+/* SIGN IN */
+.sign-in-container{
+    position: fixed;
+}
 
-/* TIMELINE */
-.timeline-container{
+/* MAIN PAGE */
+.main-page-container{
     grid-column: 2;
 }
 
-/* posts */
+/* posts/timeline */
 .post{
     display: grid;
     grid-template-columns: 25px 200px;
