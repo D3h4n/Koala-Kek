@@ -18,10 +18,8 @@
 /* posts */
 .post{
     display: grid;
-    grid-template-columns: 50px 100px auto;
-    grid-template-rows: 50px 2px 50px auto;
-
-    align-items: center;
+    grid-template-columns: 25px 100px auto;
+    grid-template-rows: 25px 2px 50px auto;
 
     background-color:rgb(50, 50, 55);
     color: white;
@@ -40,14 +38,15 @@
 }
 
 .post-user-icon{
-    height: 40px;
-    width: 40px;
+    height: 20px;
+    width: 20px;
     border-radius: 50%;
 }
 
 .post-text{
     grid-column: 1 / 4;
     grid-row: 3;
+    margin-top: 5px;
 }
 
 .post-image-container{

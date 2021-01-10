@@ -47,7 +47,7 @@ export default function Timeline({ user }:Props) {
 
     useEffect(()=>{
         setPosts([{
-                text: "I like cheese",
+                text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et netus et malesuada fames ac turpis egestas maecenas. Amet luctus venenati",
                 userID: "1",
                 hasImg: false
             }, 
