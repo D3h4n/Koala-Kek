@@ -12,6 +12,7 @@ export default function Post({ post, user }: Props) {
         <div className='post'>
             <img src={user ? user.icon : defaultIcon} alt='user icon' className='post-user-icon'/>
             <h3 className='post-user-name'>{user ? user.userName : 'unknown'}</h3>
+            <hr className='post-hr'/>
             <p className='post-text'>{post.text}</p>
             { post.hasImg ? 
                 <div className='post-image-container'>
