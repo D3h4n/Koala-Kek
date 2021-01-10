@@ -104,7 +104,7 @@ export default function Timeline({ user }:Props) {
     }, [posts]);
 
     return (
-        <div>
+        <div className='timeline-container'>
             { posts.map((post, idx) => <Post key={idx} post={post} user={usersMap.get(post.userID)}/>) }
         </div>
     )

@@ -1,14 +1,40 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.app-container{
+    display: grid;
+    grid-template-columns: 20vw 60vw 20vw;
+    background-color:rgb(40, 40, 45);
+}
+
+/* Timeline */
+.timeline-container{
+    grid-column: 2;
+}
+
 .post{
     display: grid;
     grid-template-columns: 50px 100px auto;
     grid-template-rows: repeat(2, 50px) auto;
 
     align-items: center;
+
+    background-color:rgb(50, 50, 55);
+    color: white;
+
+    border: 2px solid rgb(150, 150, 210);
+    border-radius: 15px;
+
+    margin: 5px;
+    padding: 10px;
 }
 
 .post-user-icon{
     height: 40px;
-    width: auto;
+    width: 40px;
     border-radius: 50%;
 }
 
@@ -26,4 +52,89 @@
 .post-image{
     height: 200px;
     width: 200px;
+}
+
+/* Add Post */
+.add-post-background{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+}
+
+.add-post-btn{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+
+    width: 50px;
+    height: 50px;
+
+    border-radius: 50%;
+
+    border: 1px solid black;
+}
+
+.add-post-btn:hover{
+    background-color: #bbb;
+    cursor: pointer;
+}
+
+.add-post-form{
+    position: fixed;
+    top: 30%;
+    left: 40%;
+
+    background: rgb(40, 40, 45);
+    width: 27.5vw;
+    height: 40vh;
+
+    border: 2px solid rgb(150, 150, 210);
+    border-radius: 20px;
+}
+
+.add-post-form-text-input{
+    position: absolute;
+    left: 8px;
+    bottom: 20%;
+
+    border: 2px solid rgb(150, 150, 210);
+    border-radius: 20px;
+
+    padding: 10px;
+
+    width: 25vw;
+    height: 20vh;
+    resize: none;
+}
+
+.add-post-form-btn{
+    background-color: rgb(100, 100, 255);
+    border-radius: 5px;
+    border: none;
+    padding: 13px;
+
+    position: absolute;
+}
+
+.add-post-form-btn:hover{
+    cursor: pointer;
+    background-color: rgb(60, 60, 215);
+}
+
+.add-post-form-btn.post-btn{
+    left: 15px;
+    top: 10px;
+}
+
+.add-post-form-btn.add-image-btn{
+    bottom: 10px;
+    left: 10px;
+}
+
+.add-post-form-btn.cancel-btn{
+    left: 70px;
+    top: 10px;
 }
