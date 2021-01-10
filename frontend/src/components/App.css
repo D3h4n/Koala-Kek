@@ -19,7 +19,7 @@
 .post{
     display: grid;
     grid-template-columns: 25px 100px auto;
-    grid-template-rows: 25px 2px 50px auto;
+    grid-template-rows: 25px 2px auto auto;
 
     background-color:rgb(50, 50, 55);
     color: white;
@@ -46,13 +46,15 @@
 .post-text{
     grid-column: 1 / 4;
     grid-row: 3;
-    margin-top: 5px;
+    margin-top: 3px;
+    margin-bottom: 10px;
 }
 
 .post-image-container{
     grid-row: 4;
+
     display: grid;
-    grid-template-columns: repeat(2, 200px);
+    grid-template-columns: repeat(2, 210px);
 }
 
 .post-image{
