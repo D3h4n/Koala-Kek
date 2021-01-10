@@ -18,8 +18,8 @@
 /* posts */
 .post{
     display: grid;
-    grid-template-columns: 25px 100px auto;
-    grid-template-rows: 25px 2px auto auto;
+    grid-template-columns: 25px 200px;
+    grid-template-rows: 25px 2px;
 
     background-color:rgb(50, 50, 55);
     color: white;
@@ -43,23 +43,34 @@
     border-radius: 50%;
 }
 
+.post-user-name{
+    grid-row: 1;
+    grid-column: 2;
+    justify-content: right;
+}
+
 .post-text{
     grid-column: 1 / 4;
     grid-row: 3;
+
     margin-top: 3px;
     margin-bottom: 10px;
 }
 
 .post-image-container{
     grid-row: 4;
+    grid-column: 1 / 4;
 
-    display: grid;
-    grid-template-columns: repeat(2, 210px);
+    display: flex;
+
+    justify-content: center;
 }
 
 .post-image{
-    height: 200px;
-    width: 200px;
+    height: auto;
+    width: 30%;
+
+    margin: 0px 5px;
 }
 
 /* ADD POST */
