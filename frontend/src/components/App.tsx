@@ -67,8 +67,10 @@ export default function App() {
                 </Route>
                 <Route path='/Main'>
                     { user.userID === '-1' ? <Redirect to='/SignIn' /> : ''}
-                    <Timeline user={user} getUser={getUser}/>
-                    <AddPost user = {user}/>
+                    <div className='main-page-container'>
+                        <Timeline user={user} getUser={getUser}/>
+                        <AddPost user = {user}/>
+                    </div>
                 </Route>
             </Switch>
             </Router>
