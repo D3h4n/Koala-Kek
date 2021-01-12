@@ -4,22 +4,93 @@
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.app-container{
-    display: grid;
-    grid-template-columns: 25vw 50vw 25vw;
+body{
     background-color:rgb(40, 40, 45);
 }
+
+/* App Styles */
 /* SIGN IN */
 .sign-in-container{
-    position: fixed;
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
+.sign-in-header{
+    margin: 10px;
+    color: white;
+    font-size: xxx-large;
+}
+
+.sign-in-img{
+    width: 10%;
+    height: auto;
+
+    margin-top: 20vh;
+
+    border-radius: 50%;
+}
+
+.sign-in-failed{
+    color: red;
+    margin-top: 10px;
+}
+
+.sign-in-form{
+    padding: 10px;
+    display: flex;
+
+    flex-direction: column;
+}
+
+.sign-in-form-username{
+    width: 20vw;
+    height: 3em;
+    margin: 5px;
+}
+
+.sign-in-form-password{
+    width: 20vw;
+    height: 3em;
+    margin: 5px;
+}
+
+.sign-in-form-btn-container{
+    display: flex;
+    justify-content: space-around;
+}
+
+.sign-in-form-btn{
+    height: 2em;
+    width: 45%;
+
+    background-color: rgb(60, 60, 255);
+    border: 2px solid black;
+
+    margin-top: 10px;
+}
+
+.sign-in-form-btn:hover{
+    cursor: pointer;
+    background-color: rgb(40, 40, 195);
+}
+
 
 /* MAIN PAGE */
 .main-page-container{
-    grid-column: 2;
+    display: grid;
+
+    grid-template-columns: 25vw 50vw 25vw;
+    grid-template-rows: auto;
 }
 
 /* posts/timeline */
+.timeline-container{
+    grid-column: 2;
+}
+
 .post{
     display: grid;
     grid-template-columns: 25px 200px;

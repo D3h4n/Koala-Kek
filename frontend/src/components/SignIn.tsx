@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Login } from '../defintions'
+import { defaultIcon, Login } from '../defintions'
 
 interface Props{
     returnUserID: (id: string) => void 
@@ -27,6 +27,7 @@ export default function SignIn({ returnUserID }: Props) {
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
         let user = checkLogin(login);
+
         if(user){
             returnUserID(user);
         }
@@ -36,12 +37,20 @@ export default function SignIn({ returnUserID }: Props) {
     }
 
     return (
-        <div>
-            <p style={{display: failed ? 'block' : 'none'}}>Login Failed</p>
-            <form onSubmit={handleSubmit}>
-                <input type='text' name='userName' value={login?.userName} onChange={handleChange} placeholder='username'/>
-                <input type='text' name='passWord' value={login?.passWord} onChange={handleChange} placeholder='password'/>
-                <button type='submit'>Login</button>
+        <div className='sign-in-container'>
+            <h1 className='sign-in-header'>Sign In</h1>
+
+            <img className='sign-in-img' src={defaultIcon} alt='defaultIcon'/>
+
+            <p className='sign-in-failed' style={{display: failed ? 'block' : 'none'}}>Login Failed</p>
+
+            <form onSubmit={handleSubmit} className='sign-in-form'>
+                    <input className='sign-in-form-username' type='text' name='userName' value={login?.userName} onChange={handleChange} placeholder='Username'/>
+                    <input className='sign-in-form-password' type='text' name='passWord' value={login?.passWord} onChange={handleChange} placeholder='Password'/>
+                    <div className='sign-in-form-btn-container'>
+                        <button className='sign-in-form-btn' type='submit'>Login</button>
+                        <button className='sign-in-form-btn' type='button'>Sign Up</button>
+                    </div>
             </form>
         </div>
     )

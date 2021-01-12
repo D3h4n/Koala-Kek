@@ -1,4 +1,10 @@
 import React, { useState } from 'react'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Redirect
+  } from 'react-router-dom'
 import Timeline from './Timeline'
 import AddPost from './AddPost'
 import SignIn from './SignIn'
@@ -6,8 +12,8 @@ import { defaultIcon, defaultUser, User } from '../defintions'
 import './App.css'
 
 export default function App() {
-    const [isLogged, setLogged] = useState<Boolean>(false);
     const [user, setUser] = useState<User>(defaultUser)
+    const [redirect, setRedirect] = useState<Boolean>(false)
 
     const getUser = (id: string):User | null => {
         if(id === '1'){
@@ -45,18 +51,27 @@ export default function App() {
 
     function returnUserID(id: string){
         setUser(getUser(id) as User);
-        setLogged(true);
+        setRedirect(true);
     }
 
     return (
         <div className='app-container'>
-            <section className='sign-in-container' style={{display: isLogged ? 'none' : 'block'}}>
-                <SignIn returnUserID={returnUserID}/>
-            </section>
-            <section className='main-page-container' style={{display: isLogged ? 'block' : 'none'}}>
-                <Timeline user={user} getUser={getUser}/>
-                <AddPost user = {user}/>
-            </section>
+            <Router>
+            <Switch>
+                <Route exact path='/'>
+                    <Redirect to='/SignIn'/>
+                </Route>
+                <Route path='/SignIn'>
+                    <SignIn returnUserID={returnUserID}/>
+                    { redirect ? <Redirect to='/Main' /> : '' }
+                </Route>
+                <Route path='/Main'>
+                    { user.userID === '-1' ? <Redirect to='/SignIn' /> : ''}
+                    <Timeline user={user} getUser={getUser}/>
+                    <AddPost user = {user}/>
+                </Route>
+            </Switch>
+            </Router>
         </div>
     )
 }
