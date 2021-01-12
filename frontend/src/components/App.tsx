@@ -59,7 +59,7 @@ export default function App() {
             <Router>
             <Switch>
                 <Route exact path='/'>
-                    <Redirect to='/SignIn'/>
+                    <Redirect to='/Main'/>
                 </Route>
                 <Route path='/SignIn'>
                     <SignIn returnUserID={returnUserID}/>
