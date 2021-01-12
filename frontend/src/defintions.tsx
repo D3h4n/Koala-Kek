@@ -1,4 +1,5 @@
 export interface TL_Post{
+    [index: string]: any,
     text: string,
     userID: string,
     hasImg: boolean,
@@ -12,6 +13,7 @@ export interface User{
 }
 
 export interface Login{
+    [index: string]: string,
     userName: string,
     passWord: string
 }

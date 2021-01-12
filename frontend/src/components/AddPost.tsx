@@ -17,8 +17,8 @@ export default function AddPost({ user }: Props){
 
     function handleChange(event: React.ChangeEvent<any>){
         let { value, name } = event.target;
-        if((formData.text.length < textLimit || value.length < formData.text.length) && hasKey(formData, name)){
-            setFormData({...formData, [name]: value.slice(0, Math.min(200, value.length)), userID: user.userID});
+        if(hasKey(formData, name)){
+            setFormData({...formData, [name]: value.slice(0, Math.min(textLimit, value.length)), userID: user.userID});
         }
     }
 

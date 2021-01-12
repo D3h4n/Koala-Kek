@@ -8,6 +8,7 @@ interface Props{
 export default function SignIn({ returnUserID }: Props) {
     const [login, setLogin] = useState<Login>({userName: '', passWord: ''});
     const [failed, setFailed] = useState<boolean>(false);
+    const textLimit = 50;
 
     function hasKey<O>(obj: O, key: string | number | symbol): key is keyof O{
         return key in obj
@@ -15,8 +16,8 @@ export default function SignIn({ returnUserID }: Props) {
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>){
         let { value, name } = event.target;
-        if(value.length < 100 && hasKey(login, name)){
-            setLogin({...login, [name]: value});
+        if(hasKey(login, name)){
+            setLogin({...login, [name]: value.slice(0, Math.min(textLimit, value.length))});
         }
     }
 
@@ -26,10 +27,10 @@ export default function SignIn({ returnUserID }: Props) {
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
-        let user = checkLogin(login);
+        let userID = checkLogin(login);
 
-        if(user){
-            returnUserID(user);
+        if(userID){
+            returnUserID(userID);
         }
         else{
             setFailed(true);
