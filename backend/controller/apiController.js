@@ -2,13 +2,15 @@
 const defaultIcon = "https://www.xovi.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
 
 let posts = [{
-                text: "This is my second post",
+                text: "This is my first post",
+                timestamp: new Date("January 13, 2021 12:48:00"),
                 userID: "1",
                 hasImg: true,
                 imgs: [defaultIcon, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8v9ILAxQmocV9nN7ZOkEOmiiinKz73NFpsw&usqp=CAU"]
             },
             {
                 text: '#new profile pic',
+                timestamp: new Date("January 13, 2021 12:47:00"),
                 userID: '4',
                 hasImg: true,
                 imgs: [defaultIcon]
@@ -57,16 +59,25 @@ const getUser = (req, res) => {
     res.json(JSON.stringify(user));
 }
 
+const getLen = (count) => {
+    return Math.min(count > 0 ? (count > 50 ? 20 : count) : 20, posts.length)
+}
+
 const getPosts = (req, res) => {
     const id = req.params.id;
     const count = req.params.count;
 
-    res.json(JSON.stringify(posts.slice(0, Math.min(count > 0 ? count : 100, posts.length))))
+    res.json(JSON.stringify(posts
+                .sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime())
+                .slice(0, getLen(count))));
 }
 
 const getLogin = (req, res) => {
     let { passWord, userName } = JSON.parse(req.params.login);
-    if(accountMap.has(userName)){
+
+    let account = accountMap.get(userName);
+
+    if( account && passWord === account.passWord){
         res.json(JSON.stringify(accountMap.get(userName).userID));
     }
     else{
@@ -76,7 +87,11 @@ const getLogin = (req, res) => {
 
 const postNewPost = (req, res) => {
     if(req.params.post){
-        posts.push(JSON.parse(req.params.post));
+        let post = JSON.parse(req.params.post);
+        post.timestamp = new Date();
+
+        posts.push(post);
+
         res.send('success');
     }
 }

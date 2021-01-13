@@ -1,20 +1,21 @@
 export interface TL_Post{
-    [index: string]: any,
-    text: string,
-    userID: string,
-    hasImg: boolean,
+    [index: string]: any
+    timestamp?: Date
+    text: string
+    userID: string
+    hasImg: boolean
     imgs?: string[]
 }
 
 export interface User{
-    userID: string,
-    userName: string,
+    userID: string
+    userName: string
     icon: string
 }
 
 export interface Login{
-    [index: string]: string,
-    userName: string,
+    [index: string]: string
+    userName: string
     passWord: string
 }
 

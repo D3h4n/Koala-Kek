@@ -2,15 +2,20 @@ import React, { useState } from 'react'
 import axios from 'axios'
 
 import { TL_Post, User } from '../defintions'
+import { apiSrc } from './App'
 
 interface Props{
     user: User
+    handlePost: (post:TL_Post) => void
 }
 
-export default function AddPost({ user }: Props){
+const time = new Date()
+
+export default function AddPost({ user, handlePost }: Props){
     const [isVisible, setVisible] = useState<boolean>(false);
     const [formData, setFormData] = useState<TL_Post>({text: '', userID: '', hasImg: false, imgs: []});
     const textLimit = 200;
+    const lineLimit = 7;
 
 
     function hasKey<O>(obj: O, key: string | number | symbol): key is keyof O{
@@ -19,19 +24,18 @@ export default function AddPost({ user }: Props){
 
     function handleChange(event: React.ChangeEvent<any>){
         let { value, name } = event.target;
-        if(hasKey(formData, name)){
-            value = value.replace('\n', '');
-            setFormData({...formData, [name]: value.slice(0, Math.min(textLimit, value.length)), userID: user.userID});
+        if(hasKey(formData, name) && value.split(/\r\n|\r|\n/).length <= lineLimit){
+            setFormData({ ...formData, [name]: value.slice(0, Math.min(textLimit, value.length)), userID: user.userID });
         }
     }
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
-
-        if(formData.text){
-            axios.post(`http://localhost:5050/api/posts/post=${JSON.stringify(formData)}`)
-            .then(res => res.data === 'success' ? console.log('Post uploaded') : undefined)
-            .catch(err => console.error(err));
+    
+        if(formData.text || formData.hasImg){
+            axios.post(`${apiSrc}/posts/post=${encodeURIComponent(JSON.stringify(formData))}`)
+                .then(res => res.data === 'success' ? handlePost(formData) : undefined)
+                .catch(err => console.error(err));
 
             setVisible(false);
             handleClear();
@@ -39,7 +43,7 @@ export default function AddPost({ user }: Props){
     }
 
     function handleClear(){
-        setFormData({text: '', userID: user.userID, hasImg: false, imgs: []})
+        setFormData({timestamp: time, text: '', userID: user.userID, hasImg: false, imgs: []})
     }
 
     function handleCancel(){
