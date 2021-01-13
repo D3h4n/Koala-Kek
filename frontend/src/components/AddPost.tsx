@@ -34,7 +34,13 @@ export default function AddPost({ user, handlePost }: Props){
     
         if(formData.text || formData.hasImg){
             axios.post(`${apiSrc}/posts/post=${encodeURIComponent(JSON.stringify(formData))}`)
-                .then(res => res.data === 'success' ? handlePost(formData) : undefined)
+                .then(res => JSON.parse(res.data))
+                .then(data => {
+                    let newPost: TL_Post = formData;
+                    newPost.timestamp = new Date(data.timestamp);
+                    newPost.postID = data.postID;
+                    handlePost(newPost);
+                })
                 .catch(err => console.error(err));
 
             setVisible(false);

@@ -1,5 +1,6 @@
 export interface TL_Post{
     [index: string]: any
+    postID?: string
     timestamp?: Date
     text: string
     userID: string

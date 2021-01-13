@@ -2,6 +2,7 @@
 const defaultIcon = "https://www.xovi.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
 
 let posts = [{
+                postID: '1',
                 text: "This is my first post",
                 timestamp: new Date("January 13, 2021 12:48:00"),
                 userID: "1",
@@ -9,6 +10,7 @@ let posts = [{
                 imgs: [defaultIcon, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8v9ILAxQmocV9nN7ZOkEOmiiinKz73NFpsw&usqp=CAU"]
             },
             {
+                postID: '2',
                 text: '#new profile pic',
                 timestamp: new Date("January 13, 2021 12:47:00"),
                 userID: '4',
@@ -92,7 +94,7 @@ const postNewPost = (req, res) => {
 
         posts.push(post);
 
-        res.send('success');
+        res.json(JSON.stringify({timestamp: post.timestamp, postID: '-1'}));
     }
 }
 
