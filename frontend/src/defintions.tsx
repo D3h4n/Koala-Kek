@@ -19,4 +19,4 @@ export interface Login{
 }
 
 export const defaultIcon = "https://www.xovi.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
-export const defaultUser = {userID: '-1', userName: 'User not found', icon: defaultIcon}
+export const defaultUser = {userID: '-1', userName: 'User not found', icon: defaultIcon }

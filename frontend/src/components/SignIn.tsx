@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import axios from 'axios'
+
 import { defaultIcon, Login } from '../defintions'
 
 interface Props{
@@ -21,20 +23,21 @@ export default function SignIn({ returnUserID }: Props) {
         }
     }
 
-    function checkLogin(login: Login): string | null{
-        return (login.userName === 'Dehan' && login.passWord === '123') ? '1' : null
-    }
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
-        let userID = checkLogin(login);
+        axios.get(`http://localhost:5050/api/user/login${JSON.stringify(login)}`)
+            .then(res => JSON.parse(res.data))
+            .then(res => {
+                if(res){
+                    returnUserID(res);
+                }
+                else{
+                    setFailed(true);
+                }
+            })
+            .catch(err => console.log(err))
 
-        if(userID){
-            returnUserID(userID);
-        }
-        else{
-            setFailed(true);
-        }
     }
 
     return (

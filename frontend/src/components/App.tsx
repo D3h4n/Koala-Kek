@@ -1,57 +1,41 @@
 import React, { useState } from 'react'
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Redirect
-  } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import Timeline from './Timeline'
 import AddPost from './AddPost'
 import SignIn from './SignIn'
-import { defaultIcon, defaultUser, User } from '../defintions'
+import { defaultUser, User } from '../defintions'
 import './App.css'
+
+import axios from 'axios'
 
 export default function App() {
     const [user, setUser] = useState<User>(defaultUser)
     const [redirect, setRedirect] = useState<Boolean>(false)
 
-    const getUser = (id: string):User | null => {
-        if(id === '1'){
-            return{
-                userID: '1',
-                userName: 'Dehan',
-                icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8v9ILAxQmocV9nN7ZOkEOmiiinKz73NFpsw&usqp=CAU"
-            }
-        }
-        else if(id === '2'){
-            return{
-                userID: '2',
-                userName: 'Nerd231',
-                icon: defaultIcon
-            }
-        }
-        else if(id === '3'){
-            return{
-                userID: '3',
-                userName: 'Pearson',
-                icon: defaultIcon
-            }
-        }
-        else if(id === '4'){
-            return{
-                userID: '4',
-                userName: 'Hackerman',
-                icon: defaultIcon
-            }
+    async function getUser(id: string):Promise<User> {
+        let user:User;
+
+        user = await axios.get(`http://localhost:5050/api/user/id=${id}`)
+            .then(res => JSON.parse(res.data))
+            .catch(err => console.error(err))
+
+        if(user){
+            return user;
         }
         else{
-            return null;
+            return defaultUser;
         }
     }
 
-    function returnUserID(id: string){
-        setUser(getUser(id) as User);
-        setRedirect(true);
+    async function returnUserID(id: string){
+        let user:User = await getUser(id);
+        setUser(user);
+        if(user !== defaultUser){
+            setRedirect(true);
+        }
+        else{
+            console.error('Login ID not found');
+        }
     }
 
     return (
@@ -66,7 +50,7 @@ export default function App() {
                     { redirect ? <Redirect to='/Main' /> : '' }
                 </Route>
                 <Route path='/Main'>
-                    { user.userID === '-1' ? <Redirect to='/SignIn' /> : ''}
+                    { user.userID === '-1' ? <Redirect to='/SignIn' />  : ''}
                     <div className='main-page-container'>
                         <Timeline user={user} getUser={getUser}/>
                         <AddPost user = {user}/>
