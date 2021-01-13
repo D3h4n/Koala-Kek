@@ -26,7 +26,7 @@ export default function SignIn({ returnUserID }: Props) {
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
-        axios.get(`http://localhost:5050/api/user/login${JSON.stringify(login)}`)
+        axios.get(`http://localhost:5050/api/user/login=${JSON.stringify(login)}`)
             .then(res => JSON.parse(res.data))
             .then(res => {
                 if(res){
