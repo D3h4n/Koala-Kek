@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import axios from 'axios'
+
 import { TL_Post, User } from '../defintions'
 
 interface Props{
@@ -18,6 +20,7 @@ export default function AddPost({ user }: Props){
     function handleChange(event: React.ChangeEvent<any>){
         let { value, name } = event.target;
         if(hasKey(formData, name)){
+            value = value.replace('\n', '');
             setFormData({...formData, [name]: value.slice(0, Math.min(textLimit, value.length)), userID: user.userID});
         }
     }
@@ -26,7 +29,10 @@ export default function AddPost({ user }: Props){
         event.preventDefault();
 
         if(formData.text){
-            console.log(formData);
+            axios.post(`http://localhost:5050/api/posts/post=${JSON.stringify(formData)}`)
+            .then(res => res.data === 'success' ? console.log('Post uploaded') : undefined)
+            .catch(err => console.error(err));
+
             setVisible(false);
             handleClear();
         }

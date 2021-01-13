@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import Post from './Post'
 import axios from 'axios'
 
@@ -13,7 +13,7 @@ export default function Timeline({ user, getUser }:Props) {
     const [ posts, setPosts ] = useState<TL_Post[]>([]);
     const isMountedRef = useRef<boolean>(false);
 
-    function getPosts(count: Number){
+    const getPosts = useCallback((count: Number) => {
         axios.get(`http://localhost:5050/api/posts/id=${user.userID}&count=${count}`)
             .then(res => JSON.parse(res.data))
             .then(res =>{
@@ -22,10 +22,15 @@ export default function Timeline({ user, getUser }:Props) {
                 }
             })
             .catch(err => console.log(err))
-    }
+    }, [user]);
 
-    // eslint-disable-next-line
-    useEffect(() => getPosts(20), []);
+    useEffect(() => {
+        getPosts(-1)
+        return () => {
+            setPosts([]);
+        }
+
+    }, [getPosts]);
 
     return (
         <div className='timeline-container'>

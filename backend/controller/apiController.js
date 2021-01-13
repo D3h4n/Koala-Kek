@@ -1,44 +1,18 @@
 
 const defaultIcon = "https://www.xovi.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
 
-const posts = [{
-                    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et netus et malesuada fames ac turpis egestas maecenas. Amet luctus venenati",
-                    userID: "1",
-                    hasImg: false
-                }, 
-                {
-                    text: "I have a dream",
-                    userID: "2",
-                    hasImg: false
-                }, 
-                {
-                    text: "Coding is super fun",
-                    userID: "3",
-                    hasImg: false
-                },
-                {
-                    text: "I will hack the world 😎",
-                    userID: "4",
-                    hasImg: false
-                },
-                {
-                    text: "I don't exist",
-                    userID: "5",
-                    hasImg: false
-                },
-                {
-                    text: "This is my second post",
-                    userID: "1",
-                    hasImg: true,
-                    imgs: [defaultIcon, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8v9ILAxQmocV9nN7ZOkEOmiiinKz73NFpsw&usqp=CAU"]
-                },
-                {
-                    text: '#new profile pic',
-                    userID: '4',
-                    hasImg: true,
-                    imgs: [defaultIcon]
-                }
-                ]
+let posts = [{
+                text: "This is my second post",
+                userID: "1",
+                hasImg: true,
+                imgs: [defaultIcon, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8v9ILAxQmocV9nN7ZOkEOmiiinKz73NFpsw&usqp=CAU"]
+            },
+            {
+                text: '#new profile pic',
+                userID: '4',
+                hasImg: true,
+                imgs: [defaultIcon]
+            }]
 
 const accountMap = new Map();
 accountMap.set('Dehan', {userName: 'Dehan', passWord: '123', userID: '1'});
@@ -87,8 +61,7 @@ const getPosts = (req, res) => {
     const id = req.params.id;
     const count = req.params.count;
 
-    console.log(count);
-    res.json(JSON.stringify(posts.slice(0, Math.min(count, posts.length))))
+    res.json(JSON.stringify(posts.slice(0, Math.min(count > 0 ? count : 100, posts.length))))
 }
 
 const getLogin = (req, res) => {
@@ -101,8 +74,16 @@ const getLogin = (req, res) => {
     }
 }
 
+const postNewPost = (req, res) => {
+    if(req.params.post){
+        posts.push(JSON.parse(req.params.post));
+        res.send('success');
+    }
+}
+
 module.exports = {
     getUser,
     getPosts,
-    getLogin
+    getLogin,
+    postNewPost
 }

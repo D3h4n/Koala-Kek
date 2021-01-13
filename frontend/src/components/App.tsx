@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,  useCallback } from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import Timeline from './Timeline'
 import AddPost from './AddPost'
@@ -12,7 +12,7 @@ export default function App() {
     const [user, setUser] = useState<User>(defaultUser)
     const [redirect, setRedirect] = useState<Boolean>(false)
 
-    async function getUser(id: string):Promise<User> {
+    const getUser = useCallback(async(id: string):Promise<User> => {
         let user:User;
 
         user = await axios.get(`http://localhost:5050/api/user/id=${id}`)
@@ -25,18 +25,19 @@ export default function App() {
         else{
             return defaultUser;
         }
-    }
+    }, []);
 
-    async function returnUserID(id: string){
+    const returnUserID = useCallback(async (id: string) => {
         let user:User = await getUser(id);
         setUser(user);
+
         if(user !== defaultUser){
             setRedirect(true);
         }
         else{
             console.error('Login ID not found');
         }
-    }
+    }, [getUser]);
 
     return (
         <div className='app-container'>
@@ -47,13 +48,13 @@ export default function App() {
                 </Route>
                 <Route path='/SignIn'>
                     <SignIn returnUserID={returnUserID}/>
-                    { redirect ? <Redirect to='/Main' /> : '' }
+                    { redirect ?<Redirect to='/Main'/> : '' }
                 </Route>
                 <Route path='/Main'>
-                    { user.userID === '-1' ? <Redirect to='/SignIn' />  : ''}
+                    { user.userID === '-1' ? <Redirect to='/SignIn'/> : ''}
                     <div className='main-page-container'>
-                        <Timeline user={user} getUser={getUser}/>
-                        <AddPost user = {user}/>
+                        <Timeline user={user} getUser={getUser} />
+                        <AddPost user = {user} />
                     </div>
                 </Route>
             </Switch>
