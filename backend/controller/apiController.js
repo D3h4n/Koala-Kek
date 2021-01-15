@@ -88,14 +88,12 @@ const getLogin = (req, res) => {
 }
 
 const postNewPost = (req, res) => {
-    if(req.body){
-        let post = req.body;
-        post.timestamp = new Date();
+    let post = req.body;
+    post.timestamp = new Date();
 
-        posts.push(post);
+    posts.push(post);
 
-        res.json(JSON.stringify({timestamp: post.timestamp, postID: '-1'}));
-    }
+    res.json(JSON.stringify({timestamp: post.timestamp, postID: '-1'}));
 }
 
 module.exports = {
