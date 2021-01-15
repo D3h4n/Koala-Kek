@@ -13,15 +13,15 @@ const time = new Date()
 
 export default function AddPost({ user, handlePost }: Props){
     const [isVisible, setVisible] = useState<boolean>(false);
-    const [formData, setFormData] = useState<TL_Post>({text: '', userID: '', hasImg: false, imgs: []});
+    const [formData, setFormData] = useState<TL_Post>({text: '', userID: user.userID, hasImg: false, imgs: []});
     const textLimit = 200;
     const lineLimit = 7;
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
-    
+
         if(formData.text || formData.hasImg){
-            axios.post(`${apiSrc}/posts/post=${encodeURIComponent(JSON.stringify(formData))}`)
+            axios.post(`${apiSrc}/posts/`, { ...formData, userID: user.userID })
                 .then(res => JSON.parse(res.data))
                 .then(data => {
                     let newPost: TL_Post = formData;

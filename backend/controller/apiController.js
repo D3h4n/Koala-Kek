@@ -19,11 +19,11 @@ let posts = [{
             }]
 
 const accountMap = new Map();
-accountMap.set('Dehan', {userName: 'Dehan', passWord: '123', userID: '1'});
-accountMap.set('Nerd231', {userName: 'Nerd231', passWord: 'Haha', userID: '2'});
+accountMap.set('Dehan', {userName: 'Dehan', passWord: '123', userID: '1', icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8v9ILAxQmocV9nN7ZOkEOmiiinKz73NFpsw&usqp=CAU"});
+accountMap.set('Nerd231', {userName: 'Nerd231', passWord: 'Haha', userID: '2', icon: defaultIcon});
 
 const getUser = (req, res) => {
-    const id = req.params.id;
+    let {id} = req.query;
     let user;
 
     switch(id){
@@ -66,8 +66,7 @@ const getLen = (count) => {
 }
 
 const getPosts = (req, res) => {
-    const id = req.params.id;
-    const count = req.params.count;
+    const {id, count} = req.query;
 
     res.json(JSON.stringify(posts
                 .sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime())
@@ -75,7 +74,7 @@ const getPosts = (req, res) => {
 }
 
 const getLogin = (req, res) => {
-    let { passWord, userName } = req.body;
+    let { passWord, userName } = req.query;
 
     let account = accountMap.get(userName);
 

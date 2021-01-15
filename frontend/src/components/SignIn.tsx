@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {Redirect} from 'react-router-dom'
 import axios from 'axios'
 
-import { handleChange } from './App'
+import { apiSrc, handleChange } from './App'
 import { defaultIcon, Login } from '../defintions'
 
 interface Props{
@@ -18,7 +18,11 @@ export default function SignIn({ returnUserID }: Props) {
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
-        axios.get(`http://localhost:5050/api/user/login=${encodeURIComponent(JSON.stringify(login))}`)
+        axios.get(`${apiSrc}/sign-in/`, {
+            params: {
+                ...login 
+            }
+        })
             .then(res => JSON.parse(res.data))
             .then(res => {
                 if(res){

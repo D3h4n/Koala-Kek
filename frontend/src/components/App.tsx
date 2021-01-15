@@ -9,7 +9,7 @@ import './App.css'
 
 import axios from 'axios'
 
-export const apiSrc = 'http://localhost:5050/api/';
+export const apiSrc = 'http://localhost:5050/api';
 
 function hasKey<O>(obj: O, key: string | number | symbol): key is keyof O{
     return key in obj
@@ -32,7 +32,11 @@ export default function App() {
     const getUser = useCallback(async(id: string):Promise<User> => {
         let user:User;
 
-        user = await axios.get(`${apiSrc}user/id=${id}`)
+        user = await axios.get(`${apiSrc}/user/`, {
+            params: {
+                id
+            }
+        })
             .then(res => JSON.parse(res.data))
             .catch(err => console.error(err))
 
@@ -57,7 +61,12 @@ export default function App() {
     }, [getUser]);
 
     const getPosts = useCallback((count: Number) => {
-        axios.get(`${apiSrc}posts/id=${user.userID}&count=${count}`)
+        axios.get(`${apiSrc}/posts/`, {
+            params: {
+                id: user.userID,
+                count: count
+            }
+        })
             .then(res => JSON.parse(res.data))
             .then((res: TL_Post[]) => setPosts(res))
             .catch(err => console.log(err))
