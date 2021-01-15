@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+const bodyparser = require('body-parser');
 
 const apiRouter = require('./routes/apiRouter');
 
@@ -8,7 +9,8 @@ const app = express();
 
 app.use(morgan('dev'));
 app.use(cors());
-app.use(express.urlencoded({extended: true}));
+app.use(bodyparser.json())
+app.use(bodyparser.urlencoded({extended: true}));
 
 app.get('/', (req, res) => {
     res.send('<h1>Hello</h1>');
