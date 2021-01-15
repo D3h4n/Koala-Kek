@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import {Redirect} from 'react-router-dom'
 import axios from 'axios'
 
+import { handleChange } from './App'
 import { defaultIcon, Login } from '../defintions'
 
 interface Props{
@@ -10,19 +12,9 @@ interface Props{
 export default function SignIn({ returnUserID }: Props) {
     const [login, setLogin] = useState<Login>({userName: '', passWord: ''});
     const [failed, setFailed] = useState<boolean>(false);
+    const [redirect, setRedirect] = useState<boolean>(false);
+
     const textLimit = 50;
-
-    function hasKey<O>(obj: O, key: string | number | symbol): key is keyof O{
-        return key in obj
-    }
-
-    function handleChange(event: React.ChangeEvent<HTMLInputElement>){
-        let { value, name } = event.target;
-        if(hasKey(login, name)){
-            setLogin({...login, [name]: value.slice(0, Math.min(textLimit, value.length))});
-        }
-    }
-
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
@@ -37,7 +29,6 @@ export default function SignIn({ returnUserID }: Props) {
                 }
             })
             .catch(err => console.log(err))
-
     }
 
     return (
@@ -49,13 +40,14 @@ export default function SignIn({ returnUserID }: Props) {
             <p className='sign-in-failed' style={{display: failed ? 'block' : 'none'}}>Login Failed</p>
 
             <form onSubmit={handleSubmit} className='sign-in-form'>
-                    <input className='sign-in-form-username' type='text' name='userName' value={login?.userName} onChange={handleChange} placeholder='Username'/>
-                    <input className='sign-in-form-password' type='text' name='passWord' value={login?.passWord} onChange={handleChange} placeholder='Password'/>
+                    <input className='sign-in-form-username' type='text' name='userName' value={login?.userName} onChange={(event)=>handleChange(event, setLogin, login, textLimit)} placeholder='Username'/>
+                    <input className='sign-in-form-password' type='text' name='passWord' value={login?.passWord} onChange={(event)=>handleChange(event, setLogin, login, textLimit)} placeholder='Password'/>
                     <div className='sign-in-form-btn-container'>
                         <button className='sign-in-form-btn' type='submit'>Login</button>
-                        <button className='sign-in-form-btn' type='button'>Sign Up</button>
+                        <button className='sign-in-form-btn' type='button' onClick={() => setRedirect(true)}>Sign Up</button>
                     </div>
             </form>
+            {redirect ? <Redirect to='/SignUp'/> : ''}
         </div>
     )
 }

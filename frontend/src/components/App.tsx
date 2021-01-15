@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import Timeline from './Timeline'
 import AddPost from './AddPost'
 import SignIn from './SignIn'
+import SignUp from './SignUp'
 import { defaultUser, TL_Post, User } from '../defintions'
 import './App.css'
 
@@ -10,6 +11,19 @@ import axios from 'axios'
 
 export const apiSrc = 'http://localhost:5050/api/';
 
+function hasKey<O>(obj: O, key: string | number | symbol): key is keyof O{
+    return key in obj
+}
+
+export function handleChange(event: React.ChangeEvent<any>, 
+                        stateFunction: React.Dispatch<React.SetStateAction<any>>, 
+                        prevState: any, 
+                        textLimit: number){
+    let { value, name } = event.target;
+    if(hasKey(prevState, name)){
+        stateFunction({...prevState, [name]: value.slice(0, Math.min(textLimit, value.length))});
+    }
+}
 export default function App() {
     const [user, setUser] = useState<User>(defaultUser)
     const [redirect, setRedirect] = useState<Boolean>(false)
@@ -70,6 +84,9 @@ export default function App() {
                         <Timeline getUser={getUser} posts={posts} getPosts={getPosts}/>
                         <AddPost user = {user} handlePost={handlePost}/>
                     </div>
+                </Route>
+                <Route path='/SignUp'>
+                    <SignUp />
                 </Route>
             </Switch>
             </Router>
