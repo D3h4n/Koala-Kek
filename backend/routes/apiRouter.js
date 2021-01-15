@@ -3,8 +3,10 @@ const express = require('express');
 const apiRouter = express.Router();
 const { getUser, getPosts, getLogin, postNewPost } = require('../controller/apiController');
 
-apiRouter.get('/posts/', getPosts);
-apiRouter.post('/posts/', postNewPost);
+apiRouter.route('/posts/')
+    .get(getPosts)
+    .post(postNewPost)
+    
 apiRouter.get('/user/', getUser);
 apiRouter.get('/sign-in/', getLogin);
 
