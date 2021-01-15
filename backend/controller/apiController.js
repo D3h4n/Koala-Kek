@@ -19,43 +19,26 @@ let posts = [{
             }]
 
 const accountMap = new Map();
-accountMap.set('Dehan', {userName: 'Dehan', passWord: '123', userID: '1', icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8v9ILAxQmocV9nN7ZOkEOmiiinKz73NFpsw&usqp=CAU"});
-accountMap.set('Nerd231', {userName: 'Nerd231', passWord: 'Haha', userID: '2', icon: defaultIcon});
+const signInMap = new Map();
+
+signInMap.set('Dehan', '1');
+signInMap.set('Nerd231', '2');
+
+accountMap.set('1', {userName: 'Dehan', passWord: '123', userID: '1', icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8v9ILAxQmocV9nN7ZOkEOmiiinKz73NFpsw&usqp=CAU"});
+accountMap.set('2', {userName: 'Nerd231', passWord: 'Haha', userID: '2', icon: defaultIcon});
 
 const getUser = (req, res) => {
     let {id} = req.query;
-    let user;
+    let account = accountMap.get(id);
 
-    switch(id){
-        case '1': user = {
-            userID: '1',
-            userName: 'Dehan',
-            icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8v9ILAxQmocV9nN7ZOkEOmiiinKz73NFpsw&usqp=CAU"
-        }
-        break;
-    
-        case '2': user = {
-            userID: '2',
-            userName: 'Nerd231',
-            icon: defaultIcon
-        }
-        break;
+    let user = undefined;
 
-        case '3': user = {
-            userID: '3',
-            userName: 'Pearson',
-            icon: defaultIcon
+    if(account){
+        user = {
+            userName: account.userName,
+            userID: account.userID,
+            icon: account.icon
         }
-        break;
-
-        case '4': user = {
-            userID: '4',
-            userName: 'Hackerman',
-            icon: defaultIcon
-        }
-        break;
-
-        default: user = null;
     }
 
     res.json(JSON.stringify(user));
@@ -76,10 +59,10 @@ const getPosts = (req, res) => {
 const getLogin = (req, res) => {
     let { passWord, userName } = req.query;
 
-    let account = accountMap.get(userName);
+    let account = accountMap.get(signInMap.get(userName));
 
     if( account && passWord === account.passWord){
-        res.json(JSON.stringify(accountMap.get(userName).userID));
+        res.json(JSON.stringify(accountMap.get(account.userID).userID));
     }
     else{
         res.json('""');
