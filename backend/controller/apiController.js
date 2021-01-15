@@ -75,7 +75,7 @@ const getPosts = (req, res) => {
 }
 
 const getLogin = (req, res) => {
-    let { passWord, userName } = JSON.parse(req.params.login);
+    let { passWord, userName } = req.body;
 
     let account = accountMap.get(userName);
 
@@ -88,8 +88,8 @@ const getLogin = (req, res) => {
 }
 
 const postNewPost = (req, res) => {
-    if(req.params.post){
-        let post = JSON.parse(req.params.post);
+    if(req.body){
+        let post = req.body;
         post.timestamp = new Date();
 
         posts.push(post);
