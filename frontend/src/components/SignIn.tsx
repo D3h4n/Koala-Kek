@@ -5,6 +5,8 @@ import axios from 'axios'
 import { handleChange } from './App'
 import { defaultIcon, Login, apiSrc } from '../defintions'
 
+const md5 = require('md5')
+
 interface Props{
     returnUserID: (id: string, rememberSignIn: boolean) => void 
 }
@@ -18,11 +20,13 @@ export default function SignIn({ returnUserID }: Props) {
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
-        axios.get(`${apiSrc}/sign-in/`, {
-            params: {
-                ...login 
-            }
-        })
+
+        let submit:Login = {
+            passWord: md5(login.passWord),
+            userName: md5(login.userName)
+        }
+
+        axios.post(`${apiSrc}/sign-in/`, { ...submit })
             .then(res => JSON.parse(res.data))
             .then(res => {
                 if(res){

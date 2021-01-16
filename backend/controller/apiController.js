@@ -1,35 +1,16 @@
+const uuid = require('uuid').v4
+
 
 const defaultIcon = "https://www.xovi.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
 const defaultUser = {userID: '-1', userName: '', displayName: 'User not found', icon: defaultIcon }
 
-let posts = [{
-                postID: '1',
-                text: "This is my first post",
-                timestamp: new Date("January 13, 2021 12:48:00"),
-                userID: "1",
-                hasImg: true,
-                imgs: [defaultIcon, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8v9ILAxQmocV9nN7ZOkEOmiiinKz73NFpsw&usqp=CAU"]
-            },
-            {
-                postID: '2',
-                text: '#new profile pic',
-                timestamp: new Date("January 13, 2021 12:47:00"),
-                userID: '4',
-                hasImg: true,
-                imgs: [defaultIcon]
-            }]
-
 const accountMap = new Map();
-const signInMap = new Map();
+const userIdMap = new Map();
 
-signInMap.set('Dehan', '1');
-signInMap.set('Nerd231', '2');
-
-accountMap.set('1', {displayName: 'Deshawn Knight', userName: 'Dehan', passWord: '123', userID: '1', icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8v9ILAxQmocV9nN7ZOkEOmiiinKz73NFpsw&usqp=CAU"});
-accountMap.set('2', {displayName: 'Soho Person YESSIR!!!', userName: 'Nerd231', passWord: 'Haha', userID: '2', icon: defaultIcon});
+const posts = []
 
 const getUser = (req, res) => {
-    let {id} = req.query;
+    let { id } = req.query;
     let account = accountMap.get(id);
 
     let user;
@@ -62,16 +43,34 @@ const getPosts = (req, res) => {
 }
 
 const getLogin = (req, res) => {
-    let { passWord, userName } = req.query;
+    let { passWord, userName } = req.body;
 
-    let account = accountMap.get(signInMap.get(userName));
+    let account = accountMap.get(userIdMap.get(userName));
 
     if( account && passWord === account.passWord){
-        res.json(JSON.stringify(accountMap.get(account.userID).userID));
+        res.json(JSON.stringify(account.userID));
     }
     else{
         res.json('""');
     }
+}
+
+const checkUserExists = (req, res) => {
+    let { userName } = req.query;
+    
+    res.json(JSON.stringify(userIdMap.has(userName)));
+}
+
+const postSignUp = (req, res) => {
+    let newAccount = req.body;
+
+    newAccount.userID = uuid();
+    newAccount.icon = defaultIcon;
+
+    userIdMap.set(newAccount.userName, newAccount.userID);
+    accountMap.set(newAccount.userID, newAccount);
+
+    res.json(JSON.stringify(newAccount.userID));
 }
 
 const postNewPost = (req, res) => {
@@ -80,12 +79,14 @@ const postNewPost = (req, res) => {
 
     posts.push(post);
 
-    res.json(JSON.stringify({timestamp: post.timestamp, postID: '-1'}));
+    res.json(JSON.stringify({timestamp: post.timestamp, postID: uuid()}));
 }
 
 module.exports = {
     getUser,
     getPosts,
     getLogin,
-    postNewPost
+    postNewPost,
+    postSignUp,
+    checkUserExists
 }

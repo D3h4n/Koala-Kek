@@ -1,14 +1,14 @@
 html{
-    font-size: 100%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 *{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     padding: 0;
     margin: 0;
 }
 
 body{
+    font-size: 100%;
     background-color:rgb(40, 40, 45);
     box-sizing: border-box;
 }
@@ -129,7 +129,7 @@ body{
 
 .post{
     display: grid;
-    grid-template-columns: 25px 200px;
+    grid-template-columns: 25px;
     grid-template-rows: 25px 2px;
 
     background-color:rgb(50, 50, 55);

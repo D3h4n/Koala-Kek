@@ -17,10 +17,11 @@ function hasKey<O>(obj: O, key: string | number | symbol): key is keyof O{
 export function handleChange (
             event: React.ChangeEvent<any>, 
             stateFunction: React.Dispatch<React.SetStateAction<any>>, 
-            prevState: any, 
+            prevState: Object, 
             textLimit: number
         ){
     let { value, name } = event.target;
+
     if(hasKey(prevState, name)){
         stateFunction({...prevState, [name]: value.slice(0, Math.min(textLimit, value.length))});
     }
@@ -32,7 +33,7 @@ export default function App() {
     const [posts, setPosts] = useState<TL_Post[]>([])
     const done = useRef<boolean>(false)
 
-    const getUser = useCallback(async(id: string):Promise<User> => {
+    const getUser = useCallback((id: string):Promise<User> => {
         return new Promise<User>((resolve, reject)=>{
             axios.get(`${apiSrc}/user/`, {params: {id}})
                 .then(res => JSON.parse(res.data))
@@ -41,8 +42,9 @@ export default function App() {
         });
     }, []);
 
-    const returnUserID = useCallback(async (id: string, rememberSignIn: boolean) => {
+    const returnUserID = useCallback(async (id: string, rememberSignIn: boolean = false) => {
         let user:User = await getUser(id);
+
         setUser(user);
 
         if(user !== defaultUser){
@@ -114,7 +116,7 @@ export default function App() {
                     </div>
                 </Route>
                 <Route path='/SignUp'>
-                    <SignUp />
+                    <SignUp returnUserID={returnUserID} />
                 </Route>
             </Switch>
             </Router>
