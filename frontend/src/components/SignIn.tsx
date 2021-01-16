@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
-import {Redirect} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import axios from 'axios'
 
-import { apiSrc, handleChange } from './App'
-import { defaultIcon, Login } from '../defintions'
+import { handleChange } from './App'
+import { defaultIcon, Login, apiSrc } from '../defintions'
 
 interface Props{
-    returnUserID: (id: string) => void 
+    returnUserID: (id: string, rememberSignIn: boolean) => void 
 }
 
 export default function SignIn({ returnUserID }: Props) {
     const [login, setLogin] = useState<Login>({userName: '', passWord: ''});
     const [failed, setFailed] = useState<boolean>(false);
-    const [redirect, setRedirect] = useState<boolean>(false);
+    const [checked, setChecked] = useState<boolean>(false);
 
     const textLimit = 50;
 
@@ -26,7 +26,7 @@ export default function SignIn({ returnUserID }: Props) {
             .then(res => JSON.parse(res.data))
             .then(res => {
                 if(res){
-                    returnUserID(res);
+                    returnUserID(res, checked);
                 }
                 else{
                     setFailed(true);
@@ -46,12 +46,15 @@ export default function SignIn({ returnUserID }: Props) {
             <form onSubmit={handleSubmit} className='sign-in-form'>
                     <input className='sign-in-form-username' type='text' name='userName' value={login?.userName} onChange={(event)=>handleChange(event, setLogin, login, textLimit)} placeholder='Username'/>
                     <input className='sign-in-form-password' type='text' name='passWord' value={login?.passWord} onChange={(event)=>handleChange(event, setLogin, login, textLimit)} placeholder='Password'/>
+                    <div className='sign-in-form-remember'>
+                        <label>Remember Sign In</label>
+                        <input className='sign-in-form-checkbox' type='checkbox' name='remainLogged' checked={checked} onChange={()=>setChecked(!checked)}/>
+                    </div>
                     <div className='sign-in-form-btn-container'>
                         <button className='sign-in-form-btn' type='submit'>Login</button>
-                        <button className='sign-in-form-btn' type='button' onClick={() => setRedirect(true)}>Sign Up</button>
+                        <Link to='/SignUp' className='sign-in-sign-up-btn'>SignUp</Link>
                     </div>
             </form>
-            {redirect ? <Redirect to='/SignUp'/> : ''}
         </div>
     )
 }

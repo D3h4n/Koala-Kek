@@ -1,5 +1,6 @@
 
 const defaultIcon = "https://www.xovi.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
+const defaultUser = {userID: '-1', userName: '', displayName: 'User not found', icon: defaultIcon }
 
 let posts = [{
                 postID: '1',
@@ -24,21 +25,25 @@ const signInMap = new Map();
 signInMap.set('Dehan', '1');
 signInMap.set('Nerd231', '2');
 
-accountMap.set('1', {userName: 'Dehan', passWord: '123', userID: '1', icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8v9ILAxQmocV9nN7ZOkEOmiiinKz73NFpsw&usqp=CAU"});
-accountMap.set('2', {userName: 'Nerd231', passWord: 'Haha', userID: '2', icon: defaultIcon});
+accountMap.set('1', {displayName: 'Deshawn Knight', userName: 'Dehan', passWord: '123', userID: '1', icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8v9ILAxQmocV9nN7ZOkEOmiiinKz73NFpsw&usqp=CAU"});
+accountMap.set('2', {displayName: 'Soho Person YESSIR!!!', userName: 'Nerd231', passWord: 'Haha', userID: '2', icon: defaultIcon});
 
 const getUser = (req, res) => {
     let {id} = req.query;
     let account = accountMap.get(id);
 
-    let user = undefined;
+    let user;
 
     if(account){
         user = {
+            displayName: account.displayName,
             userName: account.userName,
             userID: account.userID,
             icon: account.icon
         }
+    }
+    else{
+        user = defaultUser;
     }
 
     res.json(JSON.stringify(user));

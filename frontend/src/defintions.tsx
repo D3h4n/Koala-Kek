@@ -29,3 +29,5 @@ export interface SignUpData{
 
 export const defaultIcon = "https://www.xovi.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
 export const defaultUser = {userID: '-1', userName: '', displayName: 'User not found', icon: defaultIcon }
+export const apiSrc = 'http://localhost:5050/api';
+export const loginKey = 'user-id';

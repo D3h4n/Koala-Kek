@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
+// import React, { useState } from 'react'
 
-import { SignUpData } from '../defintions'
+// import { SignUpData } from '../defintions'
 
 export default function SignUp() {
-    const [formData, setData] = useState<SignUpData>({userName: '', passWord: '', displayName: ''})
-    const textLimit = 100;
+    // const [formData, setData] = useState<SignUpData>({userName: '', passWord: '', displayName: ''})
+    // const textLimit = 100;
 
     return (
         <div>

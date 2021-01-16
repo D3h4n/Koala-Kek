@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
-import { TL_Post, User } from '../defintions'
-import { apiSrc, handleChange } from './App'
+import { TL_Post, User, apiSrc } from '../defintions'
+import { handleChange } from './App'
 
 interface Props{
     user: User
@@ -27,6 +27,7 @@ export default function AddPost({ user, handlePost }: Props){
                     let newPost: TL_Post = formData;
                     newPost.timestamp = new Date(data.timestamp);
                     newPost.postID = data.postID;
+                    newPost.userID = user.userID;
                     handlePost(newPost);
                 })
                 .catch(err => console.error(err));

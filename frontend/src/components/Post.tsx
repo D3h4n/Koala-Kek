@@ -12,15 +12,19 @@ export default function Post({ post, getUser }: Props) {
 
     useEffect(()=>{
         getUser(post.userID)
-            .then((user)=>{
+            .then(user=>{
                 setUser(user);
+            })
+            .catch(err=>{
+                console.error(err);
+                setUser(defaultUser);
             })
     }, [post, getUser])
 
     return (
         <div className='post'>
             <img src={user.icon } alt='user icon' className='post-user-icon'/>
-            <h3 className='post-user-name'>{user.userName}</h3>
+            <h3 className='post-user-name'>{user.displayName}</h3>
             <hr className='post-hr'/>
             <pre className='post-text'>{post.text}</pre>
             { post.hasImg ? 

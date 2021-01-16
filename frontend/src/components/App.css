@@ -1,11 +1,16 @@
+html{
+    font-size: 100%;
+}
+
 *{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     padding: 0;
     margin: 0;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 body{
     background-color:rgb(40, 40, 45);
+    box-sizing: border-box;
 }
 
 /* App Styles */
@@ -63,7 +68,10 @@ body{
 }
 
 .sign-in-form-btn{
-    height: 2em;
+    font-size: smaller;
+    font-weight: bold;
+
+    height: 2rem;
     width: 45%;
 
     background-color: rgb(60, 60, 255);
@@ -77,6 +85,34 @@ body{
     background-color: rgb(40, 40, 195);
 }
 
+.sign-in-sign-up-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: smaller;
+    font-weight: bold;
+
+    height: 1.8rem;
+    width: 45%;
+
+    color: black;
+    text-decoration: none;
+
+    background-color: rgb(60, 60, 255);
+    border: 2px solid black;
+
+    margin-top: 10px;
+}
+
+.sign-in-form-remember{
+    margin-left: 3px;
+    color: white;
+
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
 
 /* MAIN PAGE */
 .main-page-container{
@@ -175,6 +211,13 @@ body{
 .add-post-btn:hover{
     background-color: rgb(40, 40, 195);
     cursor: pointer;
+}
+
+/* LOG OUT BTN */
+.logout-btn{
+    position: fixed;
+
+    top: 0;
 }
 
 /* add post form */
