@@ -21,22 +21,24 @@ export default function SignIn({ returnUserID }: Props) {
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
 
-        let submit:Login = {
-            passWord: md5(login.passWord),
-            userName: md5(login.userName)
-        }
+        if(login.userName && login.passWord){
+            let submit:Login = {
+                passWord: md5(login.passWord),
+                userName: md5(login.userName)
+            }
 
-        axios.post(`${apiSrc}/sign-in/`, { ...submit })
-            .then(res => JSON.parse(res.data))
-            .then(res => {
-                if(res){
-                    returnUserID(res, checked);
-                }
-                else{
-                    setFailed(true);
-                }
-            })
-            .catch(err => console.log(err))
+            axios.post(`${apiSrc}/sign-in/`, { ...submit })
+                .then(res => JSON.parse(res.data))
+                .then(res => {
+                    if(res){
+                        returnUserID(res, checked);
+                    }
+                    else{
+                        setFailed(true);
+                    }
+                })
+                .catch(err => console.log(err))
+        }
     }
 
     return (
