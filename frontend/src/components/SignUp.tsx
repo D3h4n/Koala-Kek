@@ -48,7 +48,6 @@ export default function SignUp({ returnUserID }:Props) {
 
             checkUsername(submit.userName)
                 .then(res => {
-                    console.log(res)
                     if(!res){
                         axios.post(`${apiSrc}/sign-up/`, { ...submit })
                         .then(res => JSON.parse(res.data))
