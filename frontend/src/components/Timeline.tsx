@@ -34,8 +34,12 @@ export default function Timeline({ getUser, posts, getPosts}:Props) {
                             newMap.set(res.userID, res);
 
                             setUserMap(newMap);
+                            resolve(res);
                         }
-                        resolve(res);
+                        else{
+                            reject('User not found');
+                        }
+                        
                     })
                     .catch(err=>console.error(err))
             }

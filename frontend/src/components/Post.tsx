@@ -12,13 +12,8 @@ export default function Post({ post, getUser }: Props) {
 
     useEffect(()=>{
         getUser(post.userID)
-            .then(user=>{
-                setUser(user);
-            })
-            .catch(err=>{
-                console.error(err);
-                setUser(defaultUser);
-            })
+            .then(user=> setUser(user))
+            .catch(err=>console.error(err))
     }, [post, getUser])
 
     return (
