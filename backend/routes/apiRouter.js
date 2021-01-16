@@ -11,7 +11,7 @@ apiRouter.post('/sign-up', postSignUp);
 apiRouter.get('/username', checkUserExists);
 
 apiRouter.get('/',(req, res)=>{
-    res.send('Index');
+    res.send('This is an api not a website');
 })
 
 module.exports = apiRouter

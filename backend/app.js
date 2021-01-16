@@ -12,7 +12,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}));
 
 app.get('/', (req, res) => {
-    res.send('<h1>Hello</h1>');
+    res.sendFile(__dirname + '/views/index.html');
 })
 
 app.use('/api', apiRouter)
