@@ -24,7 +24,7 @@ const getUser = (req, res) => {
         }
     }
     else{
-        user = defaultUser;
+        user = null;
     }
 
     res.json(JSON.stringify(user));

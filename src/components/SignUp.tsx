@@ -65,28 +65,32 @@ export default function SignUp({ returnUserID }:Props) {
     }
 
     return (
-        <div>
+        <div className='sign-up-container'>
+            <h1 className='sign-up-header'>Sign Up</h1>
             <div style={{color: 'red'}}>{ exists ? 'That username is already in use' : '' }</div>
             <form onSubmit={handleSubmit} className='sign-up-form'>
-                <input type='text' 
+                <input type='text'
+                    className='sign-up-form-input displayname' 
                     name='displayName' 
                     value={formData.displayName} 
                     onChange={event => handleChange(event, setData, formData, 30)} 
-                    placeholder='display name'
+                    placeholder='Display Name'
                 />
-                <input type='text' 
+                <input type='text'
+                    className='sign-up-form-input username' 
                     name='userName' 
                     value={formData.userName} 
                     onChange={event => handleChange(event, setData, formData, 50)} 
-                    placeholder='username'
+                    placeholder='Username'
                 />
-                <input type='text' 
+                <input type='text'
+                    className='sign-up-form-input password' 
                     name='passWord' 
                     value={formData.passWord} 
                     onChange={event => handleChange(event, setData, formData, 50)} 
-                    placeholder='password'
+                    placeholder='Password'
                 />
-                <button>Sign Up</button>
+                <button className='sign-in-form-btn sign-up-form-btn'>Sign Up</button>
             </form>
         </div>
     )

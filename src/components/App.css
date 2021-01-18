@@ -50,14 +50,9 @@ body{
     flex-direction: column;
 }
 
-.sign-in-form-username{
+.sign-in-form-input{
     width: 20vw;
-    height: 3em;
-    margin: 5px;
-}
-
-.sign-in-form-password{
-    width: 20vw;
+    padding: 3px;
     height: 3em;
     margin: 5px;
 }
@@ -106,21 +101,44 @@ body{
 }
 
 .sign-in-form-remember{
-    margin-left: 3px;
+    margin-left: 5px;
     color: white;
+}
 
-    display: flex;
-    justify-content: space-between;
-    width: 50%;
+.sign-in-form-checkbox{
+    margin-left: 10px;
 }
 
 /*Sign Up*/
+.sign-up-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sign-up-header{
+    color: white;
+    text-align: center;
+    margin: 30px;
+    margin-bottom: 250px;
+}
+
 .sign-up-form{
     display: flex;
     flex-direction: column;
-    position: absolute;
-    left: 40%;
-    top: 50%;
+    align-items: center;
+}
+
+.sign-up-form-input{
+    margin-bottom: 5px;
+    padding: 3px;
+    height: 3em;
+    width: 20vw;
+}
+
+.sign-up-form-btn{
+    margin-top: 20px;
+    width: 10vw;
 }
 
 /* MAIN PAGE */

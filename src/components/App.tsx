@@ -38,7 +38,7 @@ export default function App() {
         return new Promise<User>((resolve, reject)=>{
             axios.get(`${apiSrc}/user/`, {params: {id}})
                 .then(res => JSON.parse(res.data))
-                .then(res => resolve(res))
+                .then(res =>  resolve(res))
                 .catch(err => reject(err))
         });
     }, []);
@@ -46,15 +46,14 @@ export default function App() {
     const returnUserID = useCallback(async (id: string, rememberSignIn: boolean = false) => {
         let user:User = await getUser(id);
 
-        setUser(user);
-
-        if(user !== defaultUser){
+        if(user){
+            setUser(user);
             if(rememberSignIn){
                 localStorage.setItem(loginKey, user.userID);
             }
         }
         else{
-            console.error('Login ID not found');
+            console.error('User ID not found');
         }
     }, [getUser]);
 
@@ -81,22 +80,23 @@ export default function App() {
                 .then(user => {
                     if(user){
                         setUser(user);
-                        history.push('/main');
+                        history.replace('/main');
                     }
                     else{
-                        history.push('/sign-in');
+                        history.replace('/sign-in');
                     }
                 })
                 .catch(err => console.error(err))
         }
         else{
-            history.push('/sign-in');
+            history.replace('/sign-in');
         }
     }, [getUser, history])
 
     return (<Switch>
                 <Route exact path='/'>
-                    <h1>Loading</h1>
+                    <h1>Error</h1>
+                    <p>If you're seeing this page there has either been an outage or the server is taking unusually long to respond</p>
                 </Route>
                 <Route path='/sign-in'>
                     <SignIn returnUserID={returnUserID}/>
