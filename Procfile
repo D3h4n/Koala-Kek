@@ -1,1 +1,1 @@
-web: Koala-Kek
+web: npm start
