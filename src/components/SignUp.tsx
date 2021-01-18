@@ -1,9 +1,9 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 import { handleChange } from './App'
 import { apiSrc, SignUpData } from '../defintions'
-import axios from 'axios';
-import { Redirect } from 'react-router-dom';
 
 var md5 = require('md5');
 
@@ -13,10 +13,9 @@ interface Props{
 
 export default function SignUp({ returnUserID }:Props) {
     const [formData, setData] = useState<SignUpData>({userName: '', passWord: '', displayName: ''})
-    
     const [exists, setExists] = useState<boolean>(false);
 
-    let redirect = useRef<boolean>(false)
+    let history = useHistory();
 
     function checkUsername(userName: string):Promise<boolean>{
         return new Promise<boolean>((resolve, reject) => {
@@ -53,7 +52,7 @@ export default function SignUp({ returnUserID }:Props) {
                         .then(res => JSON.parse(res.data))
                         .then((res: string) => {
                             returnUserID(res);
-                            redirect.current = true;
+                            history.push('/main');
                         })
                         .catch(err=>console.error(err))
                     }
@@ -89,7 +88,6 @@ export default function SignUp({ returnUserID }:Props) {
                 />
                 <button>Sign Up</button>
             </form>
-            { redirect.current ? <Redirect to='/'/> : ''}
         </div>
     )
 }

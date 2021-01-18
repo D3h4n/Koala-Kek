@@ -58,7 +58,7 @@ export default function SignIn({ returnUserID }: Props) {
                     </div>
                     <div className='sign-in-form-btn-container'>
                         <button className='sign-in-form-btn' type='submit'>Login</button>
-                        <Link to='/SignUp' className='sign-in-sign-up-btn'>SignUp</Link>
+                        <Link to='/sign-up' className='sign-in-sign-up-btn'>SignUp</Link>
                     </div>
             </form>
         </div>

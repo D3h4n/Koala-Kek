@@ -1,5 +1,5 @@
-import React, { useState,  useCallback, useEffect, useRef } from 'react'
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import React, { useState,  useCallback, useEffect } from 'react'
+import { BrowserRouter as Router, Switch, Route, useHistory } from 'react-router-dom'
 import Timeline from './Timeline'
 import AddPost from './AddPost'
 import SignIn from './SignIn'
@@ -28,8 +28,9 @@ export function handleChange (
 }
 
 export default function App() {
-    const [user, setUser] = useState<User>(defaultUser)
-    const [posts, setPosts] = useState<TL_Post[]>([])
+    const [user, setUser] = useState<User>(defaultUser);
+    const [posts, setPosts] = useState<TL_Post[]>([]);
+    let history = useHistory();
 
     const getUser = useCallback((id: string):Promise<User> => {
         return new Promise<User>((resolve, reject)=>{
@@ -50,12 +51,12 @@ export default function App() {
                 localStorage.setItem(loginKey, user.userID);
             }
     
-            window.location.href = '/Main';
+            history.push('/main');
         }
         else{
             console.error('Login ID not found');
         }
-    }, [getUser]);
+    }, [getUser, history]);
 
     const getPosts = useCallback((count: Number) => {
         axios.get(`${apiSrc}/posts/`, {
@@ -80,18 +81,18 @@ export default function App() {
                 .then(user => {
                     if(user){
                         setUser(user);
-                        window.location.href = '/Main'
+                        history.push('/main');
                     }
                     else{
-                        window.location.href = '/SignIn'
+                        history.push('/sign-in');
                     }
                 })
                 .catch(err => console.error(err))
         }
         else{
-            window.location.href = '/SignIn'
+            history.push('/sign-in');
         }
-    }, [getUser])
+    }, [getUser, history])
 
     return (
         <div className='app-container'>
@@ -100,17 +101,17 @@ export default function App() {
                 <Route exact path='/'>
                     <h1>Loading</h1>
                 </Route>
-                <Route path='/SignIn'>
+                <Route path='/sign-in'>
                     <SignIn returnUserID={returnUserID}/>
                 </Route>
-                <Route path='/Main'>
+                <Route path='/main'>
                     <div className='main-page-container'>
                         <Timeline getUser={getUser} posts={posts} getPosts={getPosts}/>
                         <AddPost user = {user} handlePost={handlePost}/>
                         <Logout />
                     </div>
                 </Route>
-                <Route path='/SignUp'>
+                <Route path='/sign-up'>
                     <SignUp returnUserID={returnUserID} />
                 </Route>
             </Switch>
