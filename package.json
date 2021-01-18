@@ -1,7 +1,8 @@
 {
   "name": "koala-kek",
-  "version": "0.1.0",
+  "version": "0.5.0",
   "private": true,
+  "main" : "server/index.js",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.8",
     "@testing-library/react": "^11.2.3",
