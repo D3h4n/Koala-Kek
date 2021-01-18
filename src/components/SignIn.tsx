@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {Link} from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import axios from 'axios'
 
 import { handleChange } from './App'
@@ -16,6 +16,7 @@ export default function SignIn({ returnUserID }: Props) {
     const [failed, setFailed] = useState<boolean>(false);
     const [checked, setChecked] = useState<boolean>(false);
 
+    let history = useHistory();
     const textLimit = 50;
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
@@ -32,6 +33,7 @@ export default function SignIn({ returnUserID }: Props) {
                 .then(res => {
                     if(res){
                         returnUserID(res, checked);
+                        history.push('/main')
                     }
                     else{
                         setFailed(true);

@@ -1,5 +1,5 @@
 import React, { useState,  useCallback, useEffect } from 'react'
-import { BrowserRouter as Router, Switch, Route, useHistory } from 'react-router-dom'
+import { Switch, Route, useHistory } from 'react-router-dom'
 import Timeline from './Timeline'
 import AddPost from './AddPost'
 import SignIn from './SignIn'
@@ -50,13 +50,11 @@ export default function App() {
             if(rememberSignIn){
                 localStorage.setItem(loginKey, user.userID);
             }
-    
-            history.push('/main');
         }
         else{
             console.error('Login ID not found');
         }
-    }, [getUser, history]);
+    }, [getUser]);
 
     const getPosts = useCallback((count: Number) => {
         axios.get(`${apiSrc}/posts/`, {
@@ -94,10 +92,7 @@ export default function App() {
         }
     }, [getUser, history])
 
-    return (
-        <div className='app-container'>
-            <Router>
-            <Switch>
+    return (<Switch>
                 <Route exact path='/'>
                     <h1>Loading</h1>
                 </Route>
@@ -114,9 +109,6 @@ export default function App() {
                 <Route path='/sign-up'>
                     <SignUp returnUserID={returnUserID} />
                 </Route>
-            </Switch>
-            </Router>
-            <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-        </div>
-    )
+                <div style={{position: 'absolute', bottom:'0', left:'10px'}}>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    </Switch>)
 }

@@ -1,10 +1,12 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom';
 
 
 export default function Logout() {
+    let history = useHistory();
     function handleLogout(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
         localStorage.clear();
-        window.location.href = '/SignIn'
+        history.push('/sign-in');
     }
 
     return (<div className="logout-container">
