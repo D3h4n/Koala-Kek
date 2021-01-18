@@ -6,7 +6,7 @@ import { defaultUser, TL_Post, User } from '../defintions'
 interface Props{
     getUser: (id: string) => Promise<User>
     posts: TL_Post[]
-    getPosts: (count: Number) => void
+    getPosts: (count: number) => void
 }
 
 const styles:React.CSSProperties = {

@@ -2,11 +2,9 @@ import React, { useState,  useCallback, useEffect } from 'react'
 import { Switch, Route, useHistory } from 'react-router-dom'
 import axios from 'axios'
 
-import Timeline from './Timeline'
-import AddPost from './AddPost'
 import SignIn from './SignIn'
 import SignUp from './SignUp'
-import Logout from './Logout'
+import Main from './Main'
 
 import { defaultUser, TL_Post, User, apiSrc, loginKey } from '../defintions'
 
@@ -93,23 +91,26 @@ export default function App() {
         }
     }, [getUser, history])
 
-    return (<Switch>
-                <Route exact path='/'>
-                    <h1>Error</h1>
-                    <p>If you're seeing this page there has either been an outage or the server is taking unusually long to respond</p>
-                </Route>
-                <Route path='/sign-in'>
-                    <SignIn returnUserID={returnUserID}/>
-                </Route>
-                <Route path='/main'>
-                    <div className='main-page-container'>
-                        <Timeline getUser={getUser} posts={posts} getPosts={getPosts}/>
-                        <AddPost user = {user} handlePost={handlePost}/>
-                        <Logout />
-                    </div>
-                </Route>
-                <Route path='/sign-up'>
-                    <SignUp returnUserID={returnUserID} />
-                </Route>
-    </Switch>)
+    return (
+        <Switch>
+            <Route exact path='/'>
+                <h1>Error</h1>
+                <p>If you're seeing this page there has either been an outage or the server is taking unusually long to respond</p>
+            </Route>
+            <Route path='/sign-in'>
+                <SignIn returnUserID={returnUserID}/>
+            </Route>
+            <Route path='/main'>
+                <Main user={user} 
+                    posts={posts} 
+                    getUser={getUser} 
+                    getPosts={getPosts} 
+                    handlePost={handlePost}
+                />
+            </Route>
+            <Route path='/sign-up'>
+                <SignUp returnUserID={returnUserID} />
+            </Route>
+        </Switch>
+    )
 }
