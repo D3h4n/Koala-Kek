@@ -29,9 +29,7 @@ export function handleChange (
 
 export default function App() {
     const [user, setUser] = useState<User>(defaultUser)
-    const [redirect, setRedirect] = useState<Boolean>(false)
     const [posts, setPosts] = useState<TL_Post[]>([])
-    const done = useRef<boolean>(false)
 
     const getUser = useCallback((id: string):Promise<User> => {
         return new Promise<User>((resolve, reject)=>{
@@ -52,7 +50,7 @@ export default function App() {
                 localStorage.setItem(loginKey, user.userID);
             }
     
-            setRedirect(true);
+            window.location.href = '/Main';
         }
         else{
             console.error('Login ID not found');
@@ -82,17 +80,16 @@ export default function App() {
                 .then(user => {
                     if(user){
                         setUser(user);
+                        window.location.href = '/Main'
                     }
                     else{
-                        setUser(defaultUser);
+                        window.location.href = '/SignIn'
                     }
-
-                    done.current = true;
                 })
                 .catch(err => console.error(err))
         }
         else{
-            done.current = true;
+            window.location.href = '/SignIn'
         }
     }, [getUser])
 
@@ -101,14 +98,12 @@ export default function App() {
             <Router>
             <Switch>
                 <Route exact path='/'>
-                    <Redirect to='/Main' />
+                    <h1>Loading</h1>
                 </Route>
                 <Route path='/SignIn'>
                     <SignIn returnUserID={returnUserID}/>
-                    { redirect ? <Redirect to='/Main'/> : '' }
                 </Route>
                 <Route path='/Main'>
-                    { user === defaultUser && done.current ? <Redirect to='/SignIn'/> : '' }
                     <div className='main-page-container'>
                         <Timeline getUser={getUser} posts={posts} getPosts={getPosts}/>
                         <AddPost user = {user} handlePost={handlePost}/>
