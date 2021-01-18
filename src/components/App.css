@@ -114,6 +114,15 @@ body{
     width: 50%;
 }
 
+/*Sign Up*/
+.sign-up-form{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 40%;
+    top: 50%;
+}
+
 /* MAIN PAGE */
 .main-page-container{
     display: grid;

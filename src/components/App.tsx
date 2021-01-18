@@ -1,14 +1,16 @@
 import React, { useState,  useCallback, useEffect } from 'react'
 import { Switch, Route, useHistory } from 'react-router-dom'
+import axios from 'axios'
+
 import Timeline from './Timeline'
 import AddPost from './AddPost'
 import SignIn from './SignIn'
 import SignUp from './SignUp'
 import Logout from './Logout'
-import { defaultUser, TL_Post, User, apiSrc, loginKey } from '../defintions'
-import './App.css'
 
-import axios from 'axios'
+import { defaultUser, TL_Post, User, apiSrc, loginKey } from '../defintions'
+
+import './App.css'
 
 function hasKey<O>(obj: O, key: string | number | symbol): key is keyof O{
     return key in obj

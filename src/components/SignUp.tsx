@@ -67,7 +67,7 @@ export default function SignUp({ returnUserID }:Props) {
     return (
         <div>
             <div style={{color: 'red'}}>{ exists ? 'That username is already in use' : '' }</div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className='sign-up-form'>
                 <input type='text' 
                     name='displayName' 
                     value={formData.displayName} 
