@@ -3,8 +3,8 @@ import React from 'react'
 
 export default function Logout() {
     function handleLogout(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
-        localStorage.clear()
-        window.location.reload();
+        localStorage.clear();
+        window.location.href = '/SignIn'
     }
 
     return (<div className="logout-container">
