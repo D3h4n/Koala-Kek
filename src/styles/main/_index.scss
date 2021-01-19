@@ -1,0 +1,22 @@
+/* MAIN PAGE */
+.main-page{
+    display: grid;
+
+    grid-template-columns: 25vw 50vw 25vw;
+    grid-template-rows: auto;
+}
+
+/* posts/timeline */
+.timeline{
+    grid-column: 2;
+}
+
+@import '_post';
+@import '_addpost';
+
+/* LOG OUT BTN */
+.logout-btn{
+    position: fixed;
+
+    top: 0;
+}
