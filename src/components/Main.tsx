@@ -21,7 +21,7 @@ export default function Main({user, posts, getUser, getPosts, handlePost}: Props
     }
 
     return (
-        <div className='main-page-container'>
+        <div className='main-page'>
             <Timeline getUser={getUser} posts={posts} getPosts={getPosts}/>
             <AddPost user = {user} handlePost={handlePost}/>
             <button onClick={handleLogout} className="logout-btn">Logout</button>

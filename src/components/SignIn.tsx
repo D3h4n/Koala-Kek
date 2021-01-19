@@ -44,7 +44,7 @@ export default function SignIn({ returnUserID }: Props) {
     }
 
     return (
-        <div className='sign-in-container'>
+        <div className='sign-in'>
             <h1 className='sign-in-header'>Sign In</h1>
 
             <img className='sign-in-img' src={defaultIcon} alt='defaultIcon'/>

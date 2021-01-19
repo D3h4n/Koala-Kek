@@ -47,7 +47,7 @@ export default function Timeline({ getUser, posts, getPosts}:Props) {
     }
 
     return (
-        <div className='timeline-container'>
+        <div className='timeline'>
             <div style={styles}>{ posts.length === 0 ? 'Get to posting' : ''}</div>
             { posts.map((post, idx) => <Post key={idx} post={post} getUser={getUserFromMap}/>) }
         </div>
