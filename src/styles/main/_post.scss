@@ -3,17 +3,17 @@
     grid-template-columns: 25px;
     grid-template-rows: 25px 2px;
 
-    background-color:rgb(50, 50, 55);
+    background-color:$post_background;
     color: white;
 
-    border: 2px solid rgb(150, 150, 210);
+    border: 2px solid $border_color;
     border-radius: 15px;
 
     margin: 5px;
     padding: 10px;
 
     &-hr{
-        color: rgb(80, 80, 85);
+        color: gray;
         grid-column: 1 / 4;
         grid-row: 2;
     }

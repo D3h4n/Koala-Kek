@@ -34,7 +34,7 @@
         -ms-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
     
-        background: rgb(40, 40, 45);
+        background: $post_background;
         width: 27.5vw;
         height: 40vh;
     
@@ -80,8 +80,10 @@
         
         &-btn{
             background-color: $btn_color;
+
             border-radius: 5px;
-            border: none;
+            border: 1px solid black;
+
             padding: 13px;
             
             position: absolute;
@@ -102,7 +104,7 @@
             }
             
             &.cancel-btn{
-                left: 70px;
+                left: 73px;
                 top: 10px;
             }
         }

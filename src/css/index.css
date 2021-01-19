@@ -9,7 +9,7 @@ html {
 
 body {
   font-size: 100%;
-  background-color: #28282d;
+  background-color: #232328;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
@@ -86,7 +86,7 @@ body {
 
 .sign-in-form-btn:hover {
   cursor: pointer;
-  background-color: #2828c3;
+  background-color: rgba(40, 40, 255, 0.85);
 }
 
 .sign-in-form-remember {
@@ -120,7 +120,7 @@ body {
 }
 
 .sign-in-sign-up-btn:hover {
-  background-color: #2828c3;
+  background-color: rgba(40, 40, 255, 0.85);
 }
 
 .sign-up {
@@ -168,14 +168,14 @@ body {
   font-weight: bold;
   height: 2rem;
   width: 45%;
-  background-color: #3c3cff;
+  background-color: #2828ff;
   border: 2px solid black;
   margin-top: 10px;
 }
 
 .sign-up-form-btn:hover {
   cursor: pointer;
-  background-color: #2828c3;
+  background-color: rgba(40, 40, 255, 0.85);
 }
 
 /* MAIN PAGE */
@@ -210,7 +210,7 @@ body {
 }
 
 .post-hr {
-  color: #505055;
+  color: gray;
   -ms-grid-column: 1;
   -ms-grid-column-span: 3;
   grid-column: 1 / 4;
@@ -285,7 +285,7 @@ body {
 }
 
 .add-post-btn:hover {
-  background-color: #2828c3;
+  background-color: rgba(40, 40, 255, 0.85);
   cursor: pointer;
 }
 
@@ -295,7 +295,7 @@ body {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  background: #28282d;
+  background: #323237;
   width: 27.5vw;
   height: 40vh;
   border: 2px solid #9696d2;
@@ -338,14 +338,14 @@ body {
 .add-post-form-btn {
   background-color: #2828ff;
   border-radius: 5px;
-  border: none;
+  border: 1px solid black;
   padding: 13px;
   position: absolute;
 }
 
 .add-post-form-btn:hover {
   cursor: pointer;
-  background-color: #2828c3;
+  background-color: rgba(40, 40, 255, 0.85);
 }
 
 .add-post-form-btn.post-btn {
@@ -359,13 +359,23 @@ body {
 }
 
 .add-post-form-btn.cancel-btn {
-  left: 70px;
+  left: 73px;
   top: 10px;
 }
 
 /* LOG OUT BTN */
 .logout-btn {
   position: fixed;
-  top: 0;
+  background-color: #2828ff;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 13px;
+  margin: 10px;
+  bottom: 0;
+}
+
+.logout-btn:hover {
+  cursor: pointer;
+  background-color: rgba(40, 40, 255, 0.85);
 }
 /*# sourceMappingURL=index.css.map */

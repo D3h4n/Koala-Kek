@@ -18,5 +18,18 @@
 .logout-btn{
     position: fixed;
 
-    top: 0;
+    background-color: $btn_color;
+
+    border: 1px solid black;
+    border-radius: 5px;
+
+    padding: 13px;
+    margin: 10px;
+
+    bottom: 0;
+
+    &:hover{
+        cursor: pointer;
+        background-color: $btn_hover_color;
+    }
 }
