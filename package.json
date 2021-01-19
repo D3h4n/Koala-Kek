@@ -27,7 +27,7 @@
   "scripts": {
     "start": "node ./server/index",
     "deploy-dev" : "react-scripts build && (nodemon ./server/index)",
-    "start-dev": "react-scripts start",
+    "serve": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

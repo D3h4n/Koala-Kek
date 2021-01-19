@@ -5,7 +5,7 @@
         left: 0;
         width: 100vw;
         height: 100vh;
-        background-color:rgba(0,0,0,0.6);
+        background-color:rgba(0,0,0,0.7);
     }
     
     &-btn{
@@ -19,68 +19,76 @@
         border-radius: 50%;
     
         border: 1px solid black;
-        background-color: rgb(60, 60, 255);
+        background-color: $btn_color;
 
         &:hover{
-            background-color: rgb(40, 40, 195);
+            background-color: $btn_hover_color;
             cursor: pointer;
         }
     }
 
     &-form{
         position: fixed;
-        top: 30%;
-        left: 40%;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
     
         background: rgb(40, 40, 45);
         width: 27.5vw;
         height: 40vh;
     
-        border: 2px solid rgb(150, 150, 210);
+        border: 2px solid $border_color;
         border-radius: 20px;
 
         &-text-input{
             position: absolute;
             left: 8px;
-            bottom: 20%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
         
-            border: 2px solid rgb(150, 150, 210);
+            border: 2px solid $border_color;
             border-radius: 20px;
         
             padding: 10px;
+            padding-bottom: 50px;
         
             width: 25vw;
             height: 20vh;
             resize: none;
+
+            font-size: larger;
         }
         
         &-hr{
             position: absolute;
-            bottom: 29%;
+            bottom: 23%;
             left: 3.2%;
             width: 93%;
-            color:rgba(0,0,0,0.3);
+            color: darkgray;
         }
         
         &-count{
             position: absolute;
-            bottom: 22%;
+            bottom: 18%;
             right: 5%;
         
-            color:rgba(0,0,0,0.3);
+            color:darkgray;
         }
         
         &-btn{
-            background-color: rgb(40, 40, 255);
+            background-color: $btn_color;
             border-radius: 5px;
             border: none;
             padding: 13px;
-        
+            
             position: absolute;
 
             &:hover{
                 cursor: pointer;
-                background-color: rgb(40, 40, 195);
+                background-color: $btn_hover_color;
             }
 
             &.post-btn{
