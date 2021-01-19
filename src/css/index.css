@@ -378,4 +378,20 @@ body {
   cursor: pointer;
   background-color: rgba(40, 40, 255, 0.85);
 }
+
+.credit {
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+  color: darkgray;
+  font-size: 12px;
+}
+
+.credit a {
+  color: darkblue;
+}
+
+.credit a:visited {
+  color: darkblue;
+}
 /*# sourceMappingURL=index.css.map */
