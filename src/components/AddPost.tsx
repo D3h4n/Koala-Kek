@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
-import { TL_Post, User, apiSrc } from '../defintions'
+import AddImage from './AddImage'
+
+import { TL_Post, User } from '../defintions'
 import { handleChange } from './App'
 
 interface Props{
@@ -14,6 +16,7 @@ const time = new Date()
 export default function AddPost({ user, handleNewPost }: Props){
     const [isVisible, setVisible] = useState<boolean>(false);
     const [formData, setFormData] = useState<TL_Post>({body: '', userID: user._id, hasImg: false, imgs: []});
+    const [displayAddImage, setDisplayAddImage] = useState<boolean>(false);
     const textLimit = 200;
     const lineLimit = 8;
 
@@ -21,7 +24,7 @@ export default function AddPost({ user, handleNewPost }: Props){
         event.preventDefault();
 
         if(formData.body || formData.hasImg){
-            axios.post(`${apiSrc}/posts/`, { ...formData, userID: user._id })
+            axios.post(`${process.env.REACT_APP_API_URI}/posts/`, { ...formData, userID: user._id })
                 .then(res => JSON.parse(res.data))
                 .then((data: {createdAt: Date, id: string }) => {
                     let newPost: TL_Post = formData;
@@ -53,6 +56,10 @@ export default function AddPost({ user, handleNewPost }: Props){
         }
     }
 
+    function handleAddImageCancel(){
+        setDisplayAddImage(false);
+    }
+
     return (<>
         <div className='add-post-background' style={{display: (isVisible ? 'block' : 'none')}}></div>
         <div className='add-post'>
@@ -63,12 +70,13 @@ export default function AddPost({ user, handleNewPost }: Props){
                     <button className='add-post-form-btn post-btn' type='submit'>Post</button>
                     <button className='add-post-form-btn cancel-btn' onClick={handleCancel}>Cancel</button>
                     <textarea value={formData.body} onChange={handlePostText} name='body' className='add-post-form-text-input' placeholder='Enter text'/>
-                    <button className='add-post-form-btn add-image-btn'>Add Image</button>
+                    <button className='add-post-form-btn add-image-btn' onClick={() => setDisplayAddImage(true)}>Add Image</button>
                 </form>
                 <hr className='add-post-form-hr'/>
                 <p className='add-post-form-count'>{formData.body.length}/{textLimit}</p>
             </div>
         </div>
+        <div style={{display: (displayAddImage ? 'block' : 'none')}}><AddImage handleAddImageCancel={handleAddImageCancel}/></div>
     </>)
 }
 

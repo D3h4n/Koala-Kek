@@ -79,11 +79,17 @@ const postNewPost = (req, res) => {
         })
 }
 
+const postImage = (req, res) => {
+    console.log('Image sent')
+    res.json(true);
+}
+
 module.exports = {
     getUser,
     getPosts,
     getSignIn,
     postNewPost,
     postSignUp,
-    checkUserExists
+    checkUserExists,
+    postImage
 }

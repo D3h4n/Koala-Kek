@@ -2,12 +2,17 @@ html{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-*{
-    padding: 0;
-    margin: 0;
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body{
+    padding: 0;
+    margin: 0;
     font-size: 100%;
     background-color:$background;
     box-sizing: border-box;

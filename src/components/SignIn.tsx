@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom'
 import axios from 'axios'
 
 import { handleChange } from './App'
-import { defaultIcon, Login, apiSrc } from '../defintions'
+import { defaultIcon, Login } from '../defintions'
 
 const md5 = require('md5')
 
@@ -28,12 +28,12 @@ export default function SignIn({ returnUserID }: Props) {
                 userName: md5(login.userName)
             }
 
-            axios.post(`${apiSrc}/sign-in/`, { ...submit })
+            axios.post(`${process.env.REACT_APP_API_URI}/sign-in/`, { ...submit })
                 .then(res => JSON.parse(res.data))
                 .then(res => {
                     if(res){
                         returnUserID(res, checked);
-                        history.push('/main')
+                        history.replace('/main')
                     }
                     else{
                         setFailed(true);

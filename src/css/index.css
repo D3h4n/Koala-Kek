@@ -2,12 +2,16 @@ html {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-* {
-  padding: 0;
-  margin: 0;
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
+  padding: 0;
+  margin: 0;
   font-size: 100%;
   background-color: #232328;
   -webkit-box-sizing: border-box;
@@ -180,7 +184,7 @@ body {
   height: 2rem;
   width: 45%;
   background-color: #2828ff;
-  border: 2px solid black;
+  border: 1px solid black;
 }
 
 .sign-up-form-btn:hover {
@@ -312,6 +316,18 @@ body {
   border-radius: 20px;
 }
 
+@media (max-width: 1200px) {
+  .add-post-form {
+    width: 50vw;
+  }
+}
+
+@media (max-width: 900px) {
+  .add-post-form {
+    width: 75vw;
+  }
+}
+
 .add-post-form-text-input {
   position: absolute;
   left: 8px;
@@ -324,33 +340,36 @@ body {
   border-radius: 20px;
   padding: 10px;
   padding-bottom: 50px;
-  width: 25vw;
-  height: 20vh;
+  width: 90%;
+  height: 60%;
   resize: none;
   font-size: larger;
 }
 
 .add-post-form-hr {
   position: absolute;
-  bottom: 23%;
-  left: 3.2%;
-  width: 93%;
+  bottom: 26%;
+  left: 6%;
+  width: 88%;
   color: darkgray;
 }
 
 .add-post-form-count {
   position: absolute;
   bottom: 18%;
-  right: 5%;
+  right: 8%;
   color: darkgray;
 }
 
 .add-post-form-btn {
+  display: block;
+  height: 2.5rem;
+  width: 15%;
   background-color: #2828ff;
   border-radius: 5px;
   border: 1px solid black;
-  padding: 13px;
   position: absolute;
+  text-align: center;
 }
 
 .add-post-form-btn:hover {
@@ -359,18 +378,148 @@ body {
 }
 
 .add-post-form-btn.post-btn {
-  left: 15px;
-  top: 10px;
+  left: 6%;
+  top: 3%;
 }
 
 .add-post-form-btn.add-image-btn {
-  bottom: 10px;
-  left: 10px;
+  width: 25%;
+  bottom: 3%;
+  left: 6%;
 }
 
 .add-post-form-btn.cancel-btn {
-  left: 73px;
-  top: 10px;
+  left: 23%;
+  top: 3%;
+}
+
+.add-image {
+  display: fixed;
+}
+
+.add-image-background {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.add-image-form {
+  width: 50vw;
+  height: 60vh;
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  transform: -ms-translateX(-50%);
+  background-color: #323237;
+  border: 1px solid #9696d2;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+@media (max-width: 900px) {
+  .add-image-form {
+    width: 75vw;
+  }
+}
+
+.add-image-form-preview {
+  height: 38vh;
+  background-color: #232328;
+  border: 1px solid #9696d2;
+  border-radius: 10px;
+  margin: 0 20px;
+  padding: 20px;
+  padding-bottom: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.add-image-form-preview-image {
+  height: 30vh;
+}
+
+@media (max-width: 1200px) {
+  .add-image-form-preview-image {
+    height: auto;
+    width: 40vw;
+  }
+}
+
+.add-image-form-preview-size {
+  margin-left: 65%;
+}
+
+@media (max-width: 1200px) {
+  .add-image-form-preview-size {
+    margin-left: 60%;
+    font-size: small;
+  }
+}
+
+.add-image-form-input {
+  position: absolute;
+  left: 5%;
+  bottom: 24%;
+  height: 2.5rem;
+  border-radius: 5px;
+  background-color: #232328;
+  color: lightgray;
+}
+
+.add-image-form-input::-webkit-file-upload-button {
+  height: 2.5rem;
+  border: none;
+  border-radius: 5px;
+}
+
+.add-image-form-input::-webkit-file-upload-button:hover {
+  cursor: pointer;
+}
+
+.add-image-form-input:hover {
+  cursor: pointer;
+}
+
+.add-image-form-btn {
+  position: absolute;
+  font-size: smaller;
+  font-weight: bold;
+  height: 2.5rem;
+  width: 10%;
+  background-color: #2828ff;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.add-image-form-btn:hover {
+  cursor: pointer;
+  background-color: rgba(40, 40, 255, 0.85);
+}
+
+.add-image-form-btn.add-btn {
+  bottom: 5%;
+  right: 5%;
+}
+
+.add-image-form-btn.reset-btn {
+  bottom: 5%;
+  right: 27%;
+}
+
+.add-image-form-btn.cancel-btn {
+  bottom: 5%;
+  right: 16%;
 }
 
 /* LOG OUT BTN */

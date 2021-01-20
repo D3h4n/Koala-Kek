@@ -6,7 +6,7 @@ import SignIn from './SignIn'
 import SignUp from './SignUp'
 import Main from './Main'
 
-import { defaultUser, User, apiSrc, loginKey } from '../defintions'
+import { defaultUser, User, loginKey } from '../defintions'
 
 function hasKey<O>(obj: O, key: string | number | symbol): key is keyof O{
     return key in obj
@@ -31,7 +31,7 @@ export default function App() {
 
     const getUser = useCallback((id: string):Promise<User> => {
         return new Promise<User>((resolve, reject)=>{
-            axios.get(`${apiSrc}/user/`, {params: {id}})
+            axios.get(`${process.env.REACT_APP_API_URI}/user/`, {params: {id}})
                 .then(res => JSON.parse(res.data))
                 .then(res =>  resolve(res))
                 .catch(err => reject(err))

@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import { handleChange } from './App'
-import { apiSrc, SignUpData } from '../defintions'
+import { SignUpData } from '../defintions'
 
 var md5 = require('md5');
 
@@ -19,7 +19,7 @@ export default function SignUp({ returnUserID }:Props) {
 
     function checkUsername(userName: string):Promise<boolean>{
         return new Promise<boolean>((resolve, reject) => {
-            axios.get(`${apiSrc}/username/`,{
+            axios.get(`${process.env.REACT_APP_API_URI}/username/`,{
                 params: {
                     userName
                 }
@@ -48,7 +48,7 @@ export default function SignUp({ returnUserID }:Props) {
             checkUsername(submit.userName)
                 .then(res => {
                     if(!res){
-                        axios.post(`${apiSrc}/sign-up/`, { ...submit })
+                        axios.post(`${process.env.REACT_APP_API_URI}/sign-up/`, { ...submit })
                         .then(res => JSON.parse(res.data))
                         .then((res: string) => {
                             returnUserID(res);

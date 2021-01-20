@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import Timeline from './Timeline'
 import AddPost from './AddPost'
-import { User, TL_Post, apiSrc } from '../defintions'
+import { User, TL_Post } from '../defintions'
 import { useHistory } from 'react-router-dom'
 
 interface Props{
@@ -26,7 +26,7 @@ export default function Main({user, getUser }: Props) {
     }, [posts])
 
     const getPosts = useCallback((count: Number) => {
-        axios.get(`${apiSrc}/posts/`, {
+        axios.get(`${process.env.REACT_APP_API_URI}/posts/`, {
             params: {
                 id: user._id,
                 count: count
