@@ -2,7 +2,7 @@
   "name": "koala-kek",
   "version": "0.5.0",
   "private": true,
-  "main" : "server/index.js",
+  "main": "server/index.js",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.8",
     "@testing-library/react": "^11.2.3",
@@ -14,8 +14,10 @@
     "@types/react-router-dom": "^5.1.7",
     "axios": "^0.21.1",
     "cors": "^2.8.5",
+    "ejs": "^3.1.5",
     "express": "^4.17.1",
     "md5": "^2.3.0",
+    "mongoose": "^5.11.12",
     "morgan": "^1.10.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -26,7 +28,7 @@
   },
   "scripts": {
     "start": "node ./server/index",
-    "deploy-dev" : "react-scripts build && (nodemon ./server/index)",
+    "deploy-dev": "react-scripts build && (nodemon ./server/index)",
     "serve": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

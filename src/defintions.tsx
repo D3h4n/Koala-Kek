@@ -29,6 +29,5 @@ export interface SignUpData{
 
 export const defaultIcon = "https://www.xovi.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png";
 export const defaultUser = {_id: '-1', userName: '', displayName: 'User Deleted', icon: defaultIcon };
-// export const apiSrc = 'https://koala-kek.herokuapp.com/api';
-export const apiSrc = 'http://localhost:5050/api';
+export const apiSrc = process.env.REACT_APP_API_URI;
 export const loginKey = 'user-id';
