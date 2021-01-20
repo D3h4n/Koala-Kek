@@ -64,6 +64,10 @@ export default function SignUp({ returnUserID }:Props) {
         }
     }
 
+    function handleBack(event: React.MouseEvent<HTMLButtonElement, MouseEvent>){
+        history.goBack();
+    }   
+
     return (
         <div className='sign-up'>
             <h1 className='sign-up-header'>Sign Up</h1>
@@ -90,7 +94,10 @@ export default function SignUp({ returnUserID }:Props) {
                     onChange={event => handleChange(event, setData, formData, 50)} 
                     placeholder='Password'
                 />
-                <button className='sign-up-form-btn'>Sign Up</button>
+                <div className='sign-up-form-btns'>
+                    <button className='sign-up-form-btn' onClick={handleBack}>Back</button>
+                    <button className='sign-up-form-btn'>Sign Up</button>
+                </div>
             </form>
         </div>
     )

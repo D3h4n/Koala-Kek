@@ -6,29 +6,29 @@ import { handleChange } from './App'
 
 interface Props{
     user: User
-    handlePost: (post:TL_Post) => void
+    handleNewPost: (post: TL_Post) => void
 }
 
 const time = new Date()
 
-export default function AddPost({ user, handlePost }: Props){
+export default function AddPost({ user, handleNewPost }: Props){
     const [isVisible, setVisible] = useState<boolean>(false);
-    const [formData, setFormData] = useState<TL_Post>({text: '', userID: user.userID, hasImg: false, imgs: []});
+    const [formData, setFormData] = useState<TL_Post>({body: '', userID: user._id, hasImg: false, imgs: []});
     const textLimit = 200;
-    const lineLimit = 7;
+    const lineLimit = 8;
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
 
-        if(formData.text || formData.hasImg){
-            axios.post(`${apiSrc}/posts/`, { ...formData, userID: user.userID })
+        if(formData.body || formData.hasImg){
+            axios.post(`${apiSrc}/posts/`, { ...formData, userID: user._id })
                 .then(res => JSON.parse(res.data))
-                .then(data => {
+                .then((data: {createdAt: Date, id: string }) => {
                     let newPost: TL_Post = formData;
-                    newPost.timestamp = new Date(data.timestamp);
-                    newPost.postID = data.postID;
-                    newPost.userID = user.userID;
-                    handlePost(newPost);
+                    newPost.timestamp = new Date(data.createdAt);
+                    newPost.id = data.id;
+                    newPost.userID = user._id;
+                    handleNewPost(newPost);
                 })
                 .catch(err => console.error(err));
 
@@ -38,7 +38,7 @@ export default function AddPost({ user, handlePost }: Props){
     }
 
     function handleClear(){
-        setFormData({timestamp: time, text: '', userID: user.userID, hasImg: false, imgs: []})
+        setFormData({timestamp: time, body: '', userID: user._id, hasImg: false, imgs: []})
     }
 
     function handleCancel(){
@@ -48,7 +48,7 @@ export default function AddPost({ user, handlePost }: Props){
 
     function handlePostText(event: React.ChangeEvent<HTMLTextAreaElement>){
         let value = event.target.value;
-        if(value.split(/\r|\n|\r\n/).length <= lineLimit || value.length < formData.text.length){
+        if(value.split(/\r|\n|\r\n/).length <= lineLimit || value.length < formData.body.length){
             handleChange(event, setFormData, formData, textLimit);
         }
     }
@@ -62,11 +62,11 @@ export default function AddPost({ user, handlePost }: Props){
                 <form onSubmit={handleSubmit}>
                     <button className='add-post-form-btn post-btn' type='submit'>Post</button>
                     <button className='add-post-form-btn cancel-btn' onClick={handleCancel}>Cancel</button>
-                    <textarea value={formData.text} onChange={handlePostText} name='text' className='add-post-form-text-input' placeholder='Enter text'/>
+                    <textarea value={formData.body} onChange={handlePostText} name='body' className='add-post-form-text-input' placeholder='Enter text'/>
                     <button className='add-post-form-btn add-image-btn'>Add Image</button>
                 </form>
                 <hr className='add-post-form-hr'/>
-                <p className='add-post-form-count'>{formData.text.length}/{textLimit}</p>
+                <p className='add-post-form-count'>{formData.body.length}/{textLimit}</p>
             </div>
         </div>
     </>)

@@ -1,91 +1,88 @@
-const uuid = require('uuid').v4
-
+const Account = require('../models/Account');
+const Post = require('../models/Post');
 
 const defaultIcon = "https://www.xovi.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
-const defaultUser = {userID: '-1', userName: '', displayName: 'User not found', icon: defaultIcon }
-
-const accountMap = new Map();
-const userIdMap = new Map();
-
-const posts = []
 
 const getUser = (req, res) => {
     let { id } = req.query;
-    let account = accountMap.get(id);
-
-    let user;
-
-    if(account){
-        user = {
-            displayName: account.displayName,
-            userName: account.userName,
-            userID: account.userID,
-            icon: account.icon
-        }
-    }
-    else{
-        user = null;
-    }
-
-    res.json(JSON.stringify(user));
+    Account.findById(id, {displayName: 1, userName: 1, id: 1, icon: 1})
+        .then(account =>{
+            res.json(JSON.stringify(account));
+        })
+        .catch(err => {
+            console.error(err);
+            res.json(null);
+        })
 }
 
 const getLen = (count) => {
-    return Math.min(count > 0 ? (count > 50 ? 20 : count) : 20, posts.length)
+    return Math.min(count > 0 ? (count > 50 ? 20 : count) : 20, posts.length);
 }
 
 const getPosts = (req, res) => {
     const {id, count} = req.query;
 
-    res.json(JSON.stringify(posts
-                .sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime())
-                .slice(0, getLen(count))));
+    Post.find({}, {}).sort({ createdAt: -1 })
+        .then(posts => res.json(JSON.stringify(posts)))
+        .catch(err => console.error(err));
 }
 
-const getLogin = (req, res) => {
+const getSignIn = (req, res) => {
     let { passWord, userName } = req.body;
 
-    let account = accountMap.get(userIdMap.get(userName));
-
-    if( account && passWord === account.passWord){
-        res.json(JSON.stringify(account.userID));
-    }
-    else{
-        res.json('""');
-    }
+    Account.findOne(
+        { "userName":userName },
+        { passWord: 1, userID: 1}
+    ).then(result => {
+        if(result && (result.passWord === passWord)){
+            res.json(JSON.stringify(result.id));
+        }
+        else{
+            res.json(null);
+        }
+    })
+    .catch(err=>{
+        console.error(err);
+        res.json(null);
+    })
 }
 
 const checkUserExists = (req, res) => {
     let { userName } = req.query;
     
-    res.json(JSON.stringify(userIdMap.has(userName)));
+    Account.find({"userName":userName})
+        .then(result => {
+            res.json(result.length > 0);
+        })
+        .catch(err => console.error(err))
 }
 
 const postSignUp = (req, res) => {
-    let newAccount = req.body;
+    let account = new Account({
+        ...req.body,
+        icon: defaultIcon
+    });
 
-    newAccount.userID = uuid();
-    newAccount.icon = defaultIcon;
-
-    userIdMap.set(newAccount.userName, newAccount.userID);
-    accountMap.set(newAccount.userID, newAccount);
-
-    res.json(JSON.stringify(newAccount.userID));
+    account.save()
+        .then(response => res.json(JSON.stringify(response.id)))
+        .catch(err => console.error(err))
 }
 
 const postNewPost = (req, res) => {
-    let post = req.body;
-    post.timestamp = new Date();
+    let post = new Post(req.body);
 
-    posts.push(post);
-
-    res.json(JSON.stringify({timestamp: post.timestamp, postID: uuid()}));
+    post.save()
+        .then(({createdAt, id}) => res.json(JSON.stringify({createdAt, id})))
+        .catch(err =>{
+            console.error(err);
+            res.json(null);
+        })
 }
 
 module.exports = {
     getUser,
     getPosts,
-    getLogin,
+    getSignIn,
     postNewPost,
     postSignUp,
     checkUserExists

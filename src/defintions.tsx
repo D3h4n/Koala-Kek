@@ -1,15 +1,15 @@
 export interface TL_Post{
     [index: string]: any
-    postID?: string
+    id?: string
     timestamp?: Date
-    text: string
+    body: string
     userID: string
     hasImg: boolean
     imgs?: string[]
 }
 
 export interface User{
-    userID: string
+    _id: string
     displayName: string
     userName: string
     icon: string
@@ -28,7 +28,7 @@ export interface SignUpData{
 }
 
 export const defaultIcon = "https://www.xovi.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png";
-export const defaultUser = {userID: '-1', userName: '', displayName: 'User not found', icon: defaultIcon };
+export const defaultUser = {_id: '-1', userName: '', displayName: 'User Deleted', icon: defaultIcon };
 // export const apiSrc = 'https://koala-kek.herokuapp.com/api';
 export const apiSrc = 'http://localhost:5050/api';
 export const loginKey = 'user-id';
