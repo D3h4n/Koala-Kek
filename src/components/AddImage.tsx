@@ -10,7 +10,7 @@ export default function AddImage({ handleAddImageCancel }:Props) {
     const [fileSize, setFileSize] = useState<number>(0);
     const [filePreview, setFilePreview] = useState<string>('');
 
-    const fileSizeLimit = 250e3;
+    const fileSizeLimit = 100e3;
 
     const handleFileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files ? event.target.files[0] : null;
@@ -60,13 +60,13 @@ export default function AddImage({ handleAddImageCancel }:Props) {
         <div className='add-image-form'>
         <form onSubmit={handleSubmitFile} onReset={handleReset}>
             <div className='add-image-form-preview'>{filePreview && (<>
-                    <img src={filePreview} alt='chosen' className='add-image-form-preview-image'/>
-                    <p 
-                        className='add-image-form-preview-size' 
-                        style={{color: fileSize > fileSizeLimit ? 'red' : 'white'}}
-                    >
-                        {(fileSize / 1000).toFixed(2)} kb / {(fileSizeLimit / 1000).toFixed(2)} kb
-                    </p>
+                <img src={filePreview} alt='chosen' className='add-image-form-preview-image'/>
+                <p 
+                    className='add-image-form-preview-size' 
+                    style={{color: fileSize > fileSizeLimit ? 'red' : 'white'}}
+                >
+                    {(fileSize / 1000).toFixed(2)} kb / {(fileSizeLimit / 1000).toFixed(2)} kb
+                </p>
             </>)}
             </div>
             <input

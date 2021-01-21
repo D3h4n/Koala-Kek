@@ -1,5 +1,6 @@
 const Account = require('../models/Account');
 const Post = require('../models/Post');
+const cloudinary = require('cloudinary').v2;
 
 const defaultIcon = "https://www.xovi.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
 
