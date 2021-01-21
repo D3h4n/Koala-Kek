@@ -1,8 +1,7 @@
 const Account = require('../models/Account');
 const Post = require('../models/Post');
-const cloudinary = require('cloudinary').v2;
-
 const defaultIcon = "https://www.xovi.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
+const cloudinary = require('../utils/cloudinary');
 
 const getUser = (req, res) => {
     let { id } = req.query;
@@ -81,8 +80,19 @@ const postNewPost = (req, res) => {
 }
 
 const postImage = (req, res) => {
-    console.log('Image sent')
-    res.json(true);
+    try {
+        const fileStr = req.body.data;
+        cloudinary.uploader.upload(fileStr,{upload_preset: 'koala_kek_post'})
+                        .then(response => {
+                            res.json(JSON.stringify(response.secure_url));
+                        })      
+                        .catch(err => {
+                            throw(err);
+                        })
+    } catch (error) {
+        console.error(error);
+        res.json(null);
+    }
 }
 
 module.exports = {

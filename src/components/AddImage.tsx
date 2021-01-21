@@ -3,9 +3,10 @@ import axios from 'axios'
 
 interface Props{
     handleAddImageCancel: () => void
+    handleImgPost: (imgUrl: string) => void
 }
 
-export default function AddImage({ handleAddImageCancel }:Props) {
+export default function AddImage({ handleAddImageCancel, handleImgPost }:Props) {
     const [fileInputState, setFileInputState] = useState<string>('');
     const [fileSize, setFileSize] = useState<number>(0);
     const [filePreview, setFilePreview] = useState<string>('');
@@ -33,18 +34,18 @@ export default function AddImage({ handleAddImageCancel }:Props) {
         event.preventDefault();
         if(filePreview && (fileSize < fileSizeLimit)){
             uploadImage(filePreview)
-                .then(res=>console.log(res))
-                .catch(err=>console.error(err))
+                .then((res) => handleImgPost(res))
+                .catch(err => console.error(err))
         }
     }
 
     const uploadImage = (base64EncodedImage: string) => {
-        return new Promise((resolve, reject) => {
+        return new Promise<string>((resolve, reject) => {
             axios.post(`${process.env.REACT_APP_API_URI}/image/`, {
-                image: base64EncodedImage
+                data: base64EncodedImage
             })
                 .then(res => JSON.parse(res.data))
-                .then(res => resolve(res))
+                .then((res) => resolve(res))
                 .catch(err => reject(err))
         })
     }

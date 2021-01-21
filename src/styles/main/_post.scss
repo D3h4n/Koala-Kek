@@ -3,6 +3,8 @@
     grid-template-columns: 25px;
     grid-template-rows: 25px 2px;
 
+    align-items: center;
+
     background-color:$post_background;
     color: white;
 
@@ -14,6 +16,7 @@
 
     &-hr{
         color: gray;
+        width: 100%;
         grid-column: 1 / 4;
         grid-row: 2;
     }
@@ -25,8 +28,8 @@
     }
     
     &-user-name{
-        grid-row: 1;
-        grid-column: 2;
+        grid-row: 1 / 1;
+        grid-column: 2 / 2;
         justify-content: right;
     }
     
@@ -36,21 +39,17 @@
     
         margin-top: 3px;
         margin-bottom: 10px;
+
+        font-size: large;
     }
     
     &-image-container{
         grid-row: 4;
         grid-column: 1 / 4;
-    
-        display: flex;
-    
-        justify-content: center;
     }
     
     &-image{
-        height: auto;
-        width: 30%;
-    
+        max-height: 200px;
         margin: 0px 5px;
     }
 }
