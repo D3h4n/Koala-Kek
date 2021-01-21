@@ -52,11 +52,33 @@ export default function SignIn({ returnUserID }: Props) {
             <p className='sign-in-failed' style={{display: failed ? 'block' : 'none'}}>Login Failed</p>
 
             <form onSubmit={handleSubmit} className='sign-in-form'>
-                    <input className='sign-in-form-input' type='text' name='userName' value={login?.userName} onChange={(event)=>handleChange(event, setLogin, login, textLimit)} placeholder='Username'/>
-                    <input className='sign-in-form-input' type='text' name='passWord' value={login?.passWord} onChange={(event)=>handleChange(event, setLogin, login, textLimit)} placeholder='Password'/>
+                    <input 
+                        className='sign-in-form-input' 
+                        type='text' 
+                        name='userName' 
+                        value={login?.userName} 
+                        onChange={(event)=>handleChange(event, setLogin, login)}
+                        maxLength={textLimit} 
+                        placeholder='Username'
+                    />
+                    <input 
+                        className='sign-in-form-input' 
+                        type='password' 
+                        name='passWord' 
+                        value={login?.passWord}
+                        maxLength={textLimit}  
+                        onChange={(event)=>handleChange(event, setLogin, login)} 
+                        placeholder='Password'
+                    />
                     <div className='sign-in-form-remember'>
                         <label>Remember Me
-                        <input className='sign-in-form-checkbox' type='checkbox' name='remainLogged' checked={checked} onChange={()=>setChecked(!checked)}/>
+                            <input 
+                                className='sign-in-form-checkbox' 
+                                type='checkbox' 
+                                name='remainLogged' 
+                                checked={checked} 
+                                onChange={()=>setChecked(!checked)}
+                            />
                         </label>
                     </div>
                     <div className='sign-in-form-btn-container'>

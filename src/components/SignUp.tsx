@@ -14,6 +14,7 @@ interface Props{
 export default function SignUp({ returnUserID }:Props) {
     const [formData, setData] = useState<SignUpData>({userName: '', passWord: '', displayName: ''})
     const [exists, setExists] = useState<boolean>(false);
+    const textLimit = 50;
 
     let history = useHistory();
 
@@ -77,21 +78,24 @@ export default function SignUp({ returnUserID }:Props) {
                     className='sign-up-form-input' 
                     name='displayName' 
                     value={formData.displayName} 
-                    onChange={event => handleChange(event, setData, formData, 30)} 
+                    maxLength={textLimit}
+                    onChange={event => handleChange(event, setData, formData)} 
                     placeholder='Display Name'
                 />
                 <input type='text'
                     className='sign-up-form-input' 
                     name='userName' 
-                    value={formData.userName} 
-                    onChange={event => handleChange(event, setData, formData, 50)} 
+                    value={formData.userName}
+                    maxLength={textLimit} 
+                    onChange={event => handleChange(event, setData, formData)} 
                     placeholder='Username'
                 />
-                <input type='text'
+                <input type='password'
                     className='sign-up-form-input' 
                     name='passWord' 
                     value={formData.passWord} 
-                    onChange={event => handleChange(event, setData, formData, 50)} 
+                    maxLength={textLimit}
+                    onChange={event => handleChange(event, setData, formData)} 
                     placeholder='Password'
                 />
                 <div className='sign-up-form-btns'>

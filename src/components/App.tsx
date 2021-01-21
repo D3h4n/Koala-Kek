@@ -15,13 +15,12 @@ function hasKey<O>(obj: O, key: string | number | symbol): key is keyof O{
 export function handleChange (
             event: React.ChangeEvent<any>, 
             stateFunction: React.Dispatch<React.SetStateAction<any>>, 
-            prevState: Object, 
-            textLimit: number
+            prevState: Object
         ){
     let { value, name } = event.target;
 
     if(hasKey(prevState, name)){
-        stateFunction({...prevState, [name]: value.slice(0, Math.min(textLimit, value.length))});
+        stateFunction({...prevState, [name]: value});
     }
 }
 

@@ -51,8 +51,8 @@ export default function AddPost({ user, handleNewPost }: Props){
 
     function handlePostText(event: React.ChangeEvent<HTMLTextAreaElement>){
         let value = event.target.value;
-        if(value.split(/\r|\n|\r\n/).length <= lineLimit || value.length < formData.body.length){
-            handleChange(event, setFormData, formData, textLimit);
+        if(value.split(/\r|\n|\r\n/).length <= lineLimit){
+            handleChange(event, setFormData, formData);
         }
     }
 
@@ -69,36 +69,39 @@ export default function AddPost({ user, handleNewPost }: Props){
     return (<>
         <div className='add-post-background' style={{display: (isVisible ? 'block' : 'none')}}></div>
         <div className='add-post'>
-            <button className='add-post-btn' onClick={()=>setVisible(true)} style={{display: (isVisible? 'none' : 'block')}}>+</button>
+            <button 
+                className='add-post-btn' 
+                onClick={()=>setVisible(true)} 
+                style={{display: (isVisible? 'none' : 'block')}}
+            >+
+            </button>
             
             <div className='add-post-form' style={{display: (isVisible? 'block' : 'none')}}>
                 <form onSubmit={handleSubmit}>
                     <button 
                         className='add-post-form-btn post-btn' 
                         type='submit'
-                    >
-                        Post
+                    >Post
                     </button>
                     <button 
                         className='add-post-form-btn cancel-btn'
                         type='button' 
                         onClick={handleCancel}
-                    >
-                        Cancel
+                    >Cancel
                     </button>
                     <textarea
-                        value={formData.body} 
-                        onChange={handlePostText} 
+                        className='add-post-form-text-input'
                         name='body' 
-                        className='add-post-form-text-input' 
+                        value={formData.body}
+                        maxLength={textLimit} 
+                        onChange={handlePostText}
                         placeholder='Enter text'
                     />
                     <button 
                         className='add-post-form-btn add-image-btn'
                         type='button' 
                         onClick={() => setDisplayAddImage(true)}
-                    >
-                        Add Image
+                    >Add Image
                     </button>
                 </form>
                 <hr className='add-post-form-hr'/>
