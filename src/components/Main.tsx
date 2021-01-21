@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import Timeline from './Timeline'
 import AddPost from './AddPost'
+import SideBar from './SideBar'
 import { User, TL_Post } from '../defintions'
 import { useHistory } from 'react-router-dom'
 
@@ -44,7 +45,7 @@ export default function Main({user, getUser }: Props) {
     return (
         <div className='main-page'>
             <Timeline getUser={getUser} posts={posts} />
-            <button onClick={handleLogout} className="logout-btn">Logout</button>
+            <SideBar handleLogout={handleLogout}/>
             <AddPost user = {user} handleNewPost={handleNewPost}/>
         </div>
     )

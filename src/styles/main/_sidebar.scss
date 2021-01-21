@@ -1,0 +1,21 @@
+/* LOG OUT BTN */
+.sidebar{
+    &-logout-btn{
+        position: fixed;
+
+        background-color: $btn_color;
+
+        border: 1px solid black;
+        border-radius: 5px;
+
+        padding: 13px;
+        margin: 10px;
+
+        bottom: 0;
+
+        &:hover{
+            cursor: pointer;
+            background-color: $btn_hover_color;
+        }
+    }
+}

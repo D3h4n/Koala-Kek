@@ -81,9 +81,7 @@ export default function App() {
                 <SignIn returnUserID={returnUserID}/>
             </Route>
             <Route path='/main'>
-                <Main user={user} 
-                    getUser={getUser}
-                />
+                <Main user={user} getUser={getUser}/>
             </Route>
             <Route path='/sign-up'>
                 <SignUp returnUserID={returnUserID} />

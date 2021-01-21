@@ -521,7 +521,7 @@ body {
 }
 
 /* LOG OUT BTN */
-.logout-btn {
+.sidebar-logout-btn {
   position: fixed;
   background-color: #2828ff;
   border: 1px solid black;
@@ -531,7 +531,7 @@ body {
   bottom: 0;
 }
 
-.logout-btn:hover {
+.sidebar-logout-btn:hover {
   cursor: pointer;
   background-color: rgba(40, 40, 255, 0.85);
 }
