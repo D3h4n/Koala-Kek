@@ -6,7 +6,7 @@ import SignIn from './SignIn'
 import SignUp from './SignUp'
 import Main from './Main'
 
-import { defaultUser, User, loginKey } from '../defintions'
+import { defaultUser, User } from '../defintions'
 
 function hasKey<O>(obj: O, key: string | number | symbol): key is keyof O{
     return key in obj
@@ -43,7 +43,7 @@ export default function App() {
         if(user){
             setUser(user);
             if(rememberSignIn){
-                localStorage.setItem(loginKey, user._id);
+                localStorage.setItem(process.env.REACT_APP_LOGIN_KEY as string, user._id);
             }
         }
         else{
@@ -52,7 +52,7 @@ export default function App() {
     }, [getUser]);
 
     useEffect(() => {
-        let id: string | null = localStorage.getItem(loginKey);
+        let id: string | null = localStorage.getItem(process.env.REACT_APP_LOGIN_KEY as string);
         if(id != null){
             getUser(id)
                 .then(user => {

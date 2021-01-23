@@ -31,15 +31,15 @@ const SidebarProfileStyle = {
 }
 
 const SidebarProfileImgStyle = {
-    left: '5px', 
-    top: '6.1vh'
+    top: '6.1vh',
+    transform: 'translateX(-50%)'
 }
 
 export default function SideBar({ handleLogout, user }: Props) {
     const [ collapsed, setCollapsed ] = useState<boolean>(true);
 
     return (
-        <div className="sidebar" style={{width: collapsed ? '3vw' : ''}}>
+        <div className="sidebar" style={collapsed ? {width: '3vw', height: '25vh'} : {}}>
             <button 
                 className='sidebar-collapse-btn' 
                 onClick={()=>setCollapsed(!collapsed)} 
@@ -47,7 +47,7 @@ export default function SideBar({ handleLogout, user }: Props) {
             >{ collapsed ? '⨠' : '←'}
             </button>
             <button className='sidebar-profile' style={collapsed ? SidebarProfileStyle : {}}>
-                <img className='sidebar-profile-img' src={user.icon} style={collapsed ? SidebarProfileImgStyle : {}}/>
+                <img className='sidebar-profile-img' src={user.icon} style={collapsed ? SidebarProfileImgStyle : {}} alt='profile pic'/>
                 <label className='sidebar-profile-label' style={collapsed ? {display: 'none'} : {}}>Profile</label>
             </button>
             <button 

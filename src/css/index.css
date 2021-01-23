@@ -237,8 +237,8 @@ body {
 }
 
 .post-user-icon {
-  height: 20px;
-  width: 20px;
+  height: 25px;
+  width: 25px;
   border-radius: 50%;
 }
 
@@ -250,6 +250,7 @@ body {
   -webkit-box-pack: right;
       -ms-flex-pack: right;
           justify-content: right;
+  margin-left: 10px;
 }
 
 .post-text {
@@ -527,8 +528,8 @@ body {
   border: 1px solid #9696d2;
   background-color: #323237;
   position: fixed;
-  -webkit-transition: width 0.1s;
-  transition: width 0.1s;
+  -webkit-transition: width 0.1s, height 0.1s;
+  transition: width 0.1s, height 0.1s;
 }
 
 .sidebar-collapse-btn {

@@ -29,4 +29,3 @@ export interface SignUpData{
 
 export const defaultIcon = "https://www.xovi.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png";
 export const defaultUser = {_id: '-1', userName: '', displayName: 'User Deleted', icon: defaultIcon };
-export const loginKey = 'user-id';
