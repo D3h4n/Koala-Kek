@@ -521,19 +521,92 @@ body {
 }
 
 /* LOG OUT BTN */
-.sidebar-logout-btn {
+.sidebar {
+  width: 18vw;
+  height: 90vh;
+  border: 1px solid #9696d2;
+  background-color: #323237;
   position: fixed;
-  background-color: #2828ff;
-  border: 1px solid black;
-  border-radius: 5px;
+  -webkit-transition: width 0.1s;
+  transition: width 0.1s;
+}
+
+.sidebar-collapse-btn {
+  position: absolute;
+  top: 0;
+  right: 2%;
+  border: none;
+  background: none;
+  outline: none;
+  color: rgba(40, 40, 255, 0.85);
+  font-size: 2em;
+}
+
+.sidebar-collapse-btn:hover {
+  cursor: pointer;
+  color: #2828ff;
+}
+
+.sidebar-collapse-btn:focus {
+  border: none;
+}
+
+.sidebar-logout-btn {
+  position: absolute;
+  background-color: #323237;
+  border: none;
+  width: 17.9vw;
   padding: 13px;
-  margin: 10px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  left: 50%;
   bottom: 0;
+  font-size: 1em;
+  font-weight: bold;
+  color: lightgray;
 }
 
 .sidebar-logout-btn:hover {
   cursor: pointer;
-  background-color: rgba(40, 40, 255, 0.85);
+  background-color: rgba(150, 150, 210, 0.1);
+}
+
+.sidebar-profile {
+  position: absolute;
+  top: 5vh;
+  width: 17.9vw;
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.sidebar-profile-img {
+  border-radius: 50%;
+  width: 2.5vw;
+  height: 2.5vw;
+}
+
+.sidebar-profile-label {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: lightgray;
+  margin-left: 10px;
+}
+
+.sidebar-profile-label:hover {
+  cursor: pointer;
+}
+
+.sidebar-profile:hover {
+  cursor: pointer;
+  background-color: rgba(150, 150, 210, 0.1);
 }
 
 .credit {

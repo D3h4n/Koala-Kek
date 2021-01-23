@@ -1,13 +1,61 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { User } from '../defintions';
 
 interface Props{
     handleLogout: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+    user: User
 }
 
-export default function SideBar({ handleLogout }: Props) {
+const LogoutBtnStyle = {
+    border: '1px solid black',
+    backgroundColor: 'rgba(255, 0, 0, 0.2)', 
+    borderRadius: '50%', 
+    width: '2.5vw', 
+    height: '2.5vw',
+    left: '50%',
+    bottom: '0.5%', 
+    transform: 'translateX(-50%)',
+    color: 'red'
+}
+
+const BtnStyle = {
+    left: '50%', 
+    transform: 'translateX(-50%)'
+}
+
+const SidebarProfileStyle = {
+    width: 'auto',
+    padding: '0',
+    left: '50%',
+    tranform: 'translateX(-50%)'
+}
+
+const SidebarProfileImgStyle = {
+    left: '5px', 
+    top: '6.1vh'
+}
+
+export default function SideBar({ handleLogout, user }: Props) {
+    const [ collapsed, setCollapsed ] = useState<boolean>(true);
+
     return (
-        <div className="sidebar">
-            <button onClick={handleLogout} className="sidebar-logout-btn">Logout</button>
+        <div className="sidebar" style={{width: collapsed ? '3vw' : ''}}>
+            <button 
+                className='sidebar-collapse-btn' 
+                onClick={()=>setCollapsed(!collapsed)} 
+                style={collapsed ? BtnStyle : {}}
+            >{ collapsed ? '⨠' : '←'}
+            </button>
+            <button className='sidebar-profile' style={collapsed ? SidebarProfileStyle : {}}>
+                <img className='sidebar-profile-img' src={user.icon} style={collapsed ? SidebarProfileImgStyle : {}}/>
+                <label className='sidebar-profile-label' style={collapsed ? {display: 'none'} : {}}>Profile</label>
+            </button>
+            <button 
+                className="sidebar-logout-btn" 
+                onClick={handleLogout}
+                style={collapsed ? LogoutBtnStyle : {}}
+            >{ collapsed ? 'X' : 'Logout' }
+            </button>
         </div>
     )
 }

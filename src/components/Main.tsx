@@ -45,7 +45,7 @@ export default function Main({user, getUser }: Props) {
     return (
         <div className='main-page'>
             <Timeline getUser={getUser} posts={posts} />
-            <SideBar handleLogout={handleLogout}/>
+            <SideBar handleLogout={handleLogout} user={user}/>
             <AddPost user = {user} handleNewPost={handleNewPost}/>
         </div>
     )

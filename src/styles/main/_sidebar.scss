@@ -1,21 +1,96 @@
 /* LOG OUT BTN */
 .sidebar{
-    &-logout-btn{
-        position: fixed;
+    width: 18vw;
+    height: 90vh;
+    
+    border: 1px solid $border_color;
+    background-color: $post_background;
 
-        background-color: $btn_color;
+    position: fixed;
 
-        border: 1px solid black;
-        border-radius: 5px;
+    transition: width 0.1s;
 
-        padding: 13px;
-        margin: 10px;
+    &-collapse-btn{
+        position: absolute;
+        top: 0;
+        right: 2%;
 
-        bottom: 0;
+        border: none;
+        background: none;
+        outline: none;
+
+        color: $btn_hover_color;
+        font-size: 2em;
 
         &:hover{
             cursor: pointer;
-            background-color: $btn_hover_color;
+            color: $btn_color;
+        }
+
+        &:focus{
+            border: none;
+        }
+    }
+
+    &-logout-btn{
+        position: absolute;
+        background-color: $post_background;
+
+        border: none;
+        
+        width: 17.9vw;
+
+        padding: 13px;
+
+        transform: translateX(-50%);
+        left: 50%;
+        bottom: 0;
+
+        font-size: 1em;
+        font-weight: bold;
+        color: lightgray;
+
+        &:hover{
+            cursor: pointer;
+            background-color: rgba($border_color, 0.1);
+        }
+    }
+
+    &-profile{
+        position: absolute;
+        top: 5vh;
+        
+        width: 17.9vw;
+
+        padding: 10px;
+
+        display: flex;
+        align-items: center;
+
+        background: none;
+        border: none;
+        outline: none;
+
+        &-img{
+            border-radius: 50%;
+            width: 2.5vw;
+            height: 2.5vw;
+        }
+
+        &-label{
+            font-size: 1.5em;
+            font-weight: bold;
+            color: lightgray;
+            margin-left: 10px;
+
+            &:hover{
+                cursor: pointer;
+            }
+        }
+
+        &:hover{
+            cursor: pointer;
+            background-color: rgba($border_color, 0.1);
         }
     }
 }
