@@ -18,7 +18,7 @@ export default function Post({ post, getUser }: Props) {
 
     return (
         <div className='post'>
-            <img src={user.icon} alt='user icon' className='post-user-icon'/>
+            <div className='post-user-icon'><img className='post-user-icon-img' src={user.icon} alt='user icon'/></div>
             <h3 className='post-user-name'>{user.displayName}</h3>
             <hr className='post-hr'/>
             <pre className='post-text'>{post.body}</pre>

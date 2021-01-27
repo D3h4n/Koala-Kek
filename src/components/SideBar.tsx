@@ -26,13 +26,8 @@ const BtnStyle = {
 const SidebarProfileStyle = {
     width: 'auto',
     padding: '0',
-    left: '50%',
-    tranform: 'translateX(-50%)'
-}
-
-const SidebarProfileImgStyle = {
-    top: '6.1vh',
-    transform: 'translateX(-50%)'
+    left: '8%',
+    borderRadius: '50%'
 }
 
 export default function SideBar({ handleLogout, user }: Props) {
@@ -44,10 +39,10 @@ export default function SideBar({ handleLogout, user }: Props) {
                 className='sidebar-collapse-btn' 
                 onClick={()=>setCollapsed(!collapsed)} 
                 style={collapsed ? BtnStyle : {}}
-            >{ collapsed ? '⨠' : '←'}
+            >{ collapsed ? '⨠' : '≪'}
             </button>
             <button className='sidebar-profile' style={collapsed ? SidebarProfileStyle : {}}>
-                <img className='sidebar-profile-img' src={user.icon} style={collapsed ? SidebarProfileImgStyle : {}} alt='profile pic'/>
+                <img className='sidebar-profile-img' src={user.icon} alt='profile pic'/>
                 <label className='sidebar-profile-label' style={collapsed ? {display: 'none'} : {}}>Profile</label>
             </button>
             <button 
