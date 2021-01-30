@@ -10,7 +10,7 @@ export default function SideBar({ handleLogout, user }: Props) {
     const [ collapsed, setCollapsed ] = useState<boolean>(true);
 
     return (
-        <div className="sidebar" style={collapsed ? {width: '15vw', height: '5.5vh'} : {}}>
+        <div className="sidebar" style={collapsed ? {height: '5.5vh'} : {}}>
             <button 
                 className='sidebar-collapse-btn' 
                 onClick={()=>setCollapsed(!collapsed)}

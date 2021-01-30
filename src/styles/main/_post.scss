@@ -2,26 +2,22 @@
     grid-column: 2;
     overflow-y: scroll;
 
-    /* width */
     &::-webkit-scrollbar {
         width: 0.5rem;
-    }
-    
-    /* Track */
-    &::-webkit-scrollbar-track {
-        background: #aaa;
-        border-radius: 1rem;
-    }
-    
-    /* Handle */
-    &::-webkit-scrollbar-thumb {
-        background: #555;
-        border-radius: 1rem;
-    }
-    
-    /* Handle on hover */
-    &::-webkit-scrollbar-thumb:hover {
-        background: #333;
+        
+        &-track {
+            background: #aaa;
+            border-radius: 1rem;
+        }
+        
+        &-thumb {
+            background: #555;
+            border-radius: 1rem;
+            
+            &:hover {
+                background: #333;
+            }
+        }
     }
 }
 
@@ -54,7 +50,7 @@
     &-hr{
         grid-column: 1 / 3;
         grid-row: 2;
-        color: gray;
+        color: $border_color;
         width: 100%;
     }
     

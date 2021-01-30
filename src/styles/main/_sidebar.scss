@@ -1,15 +1,15 @@
 /* LOG OUT BTN */
 .sidebar{
-    width: 15vw;
+    width: 17vw;
     height: 50vh;
     
-    border: 1px solid $border_color;
-    border-radius: 0.3rem;
+    // border: 1px solid $border_color;
+    border-radius: 0 0 0.2rem 0;
     background-color: $post_background;
 
     position: fixed;
-    top: 0.5rem;
-    left: 0.5rem;
+    // top: 0.5rem;
+    // left: 0.5rem;
 
     transition: height 0.1s;
     overflow: hidden;
@@ -30,16 +30,12 @@
         }
 
         &-display-name{
-            width: 9.9vw;
+            width: 12vw;
             
             color: lightgray;
             font-weight: lighter;
             font-size: 1.2em;
             padding: 0 0.5rem;
-
-            text-overflow: ellipsis;
-            overflow: hidden;
-            
         }
 
         &:hover{
