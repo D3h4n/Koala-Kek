@@ -6,51 +6,34 @@ interface Props{
     user: User
 }
 
-const LogoutBtnStyle = {
-    border: '1px solid black',
-    backgroundColor: 'rgba(255, 0, 0, 0.2)', 
-    borderRadius: '50%', 
-    width: '2.5vw', 
-    height: '2.5vw',
-    left: '50%',
-    bottom: '0.5%', 
-    transform: 'translateX(-50%)',
-    color: 'red'
-}
-
-const BtnStyle = {
-    left: '50%', 
-    transform: 'translateX(-50%)'
-}
-
-const SidebarProfileStyle = {
-    width: 'auto',
-    padding: '0',
-    left: '8%',
-    borderRadius: '50%'
-}
-
 export default function SideBar({ handleLogout, user }: Props) {
     const [ collapsed, setCollapsed ] = useState<boolean>(true);
 
     return (
-        <div className="sidebar" style={collapsed ? {width: '3vw', height: '25vh'} : {}}>
+        <div className="sidebar" style={collapsed ? {width: '15vw', height: '5.5vh'} : {}}>
             <button 
                 className='sidebar-collapse-btn' 
-                onClick={()=>setCollapsed(!collapsed)} 
-                style={collapsed ? BtnStyle : {}}
-            >{ collapsed ? '⨠' : '≪'}
+                onClick={()=>setCollapsed(!collapsed)}
+            >≡
             </button>
-            <button className='sidebar-profile' style={collapsed ? SidebarProfileStyle : {}}>
-                <img className='sidebar-profile-img' src={user.icon} alt='profile pic'/>
-                <label className='sidebar-profile-label' style={collapsed ? {display: 'none'} : {}}>Profile</label>
-            </button>
-            <button 
-                className="sidebar-logout-btn" 
-                onClick={handleLogout}
-                style={collapsed ? LogoutBtnStyle : {}}
-            >{ collapsed ? 'X' : 'Logout' }
-            </button>
+            <div className="sidebar-user">
+                <img className='sidebar-user-img' src={user.icon} alt='profile pic'/>
+                <h3 className='sidebar-user-display-name'>{user.displayName}</h3>
+            </div>            
+
+            <section className='sidebar-options' style={collapsed ? {display: 'none'} : {}}>
+                <button className='sidebar-options-option profile'>
+                    Profile
+                </button>
+                <button className='sidebar-options-option options'>
+                    Options
+                </button>
+                <button 
+                    className="sidebar-options-option logout-btn" 
+                    onClick={handleLogout}
+                >Logout
+                </button>
+            </section>
         </div>
     )
 }

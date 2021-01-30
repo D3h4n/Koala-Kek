@@ -15,6 +15,7 @@ export default function SignUp({ returnUserID }:Props) {
     const [formData, setData] = useState<SignUpData>({userName: '', passWord: '', displayName: ''})
     const [exists, setExists] = useState<boolean>(false);
     const textLimit = 50;
+    const displayNameTextLimit = 20;
 
     let history = useHistory();
 
@@ -78,7 +79,7 @@ export default function SignUp({ returnUserID }:Props) {
                     className='sign-up-form-input' 
                     name='displayName' 
                     value={formData.displayName} 
-                    maxLength={textLimit}
+                    maxLength={displayNameTextLimit}
                     onChange={event => handleChange(event, setData, formData)} 
                     placeholder='Display Name'
                 />

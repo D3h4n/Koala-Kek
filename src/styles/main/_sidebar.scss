@@ -1,32 +1,68 @@
 /* LOG OUT BTN */
 .sidebar{
-    width: 18vw;
-    height: 90vh;
+    width: 15vw;
+    height: 50vh;
     
     border: 1px solid $border_color;
-    border-radius: 0rem 0rem 0.5rem 0rem;
+    border-radius: 0.3rem;
     background-color: $post_background;
 
     position: fixed;
+    top: 0.5rem;
+    left: 0.5rem;
 
-    transition: width 0.1s, height 0.1s;
+    transition: height 0.1s;
+    overflow: hidden;
+
+    &-user{
+        height: 3.2rem;
+
+        display: flex;
+        align-items: center;
+        
+        
+        padding: 0.3rem;
+
+
+        &-img{
+            border-radius: 50%;
+            height: 4.5vh;
+        }
+
+        &-display-name{
+            width: 9.9vw;
+            
+            color: lightgray;
+            font-weight: lighter;
+            font-size: 1.2em;
+            padding: 0 0.5rem;
+
+            text-overflow: ellipsis;
+            overflow: hidden;
+            
+        }
+
+        &:hover{
+            cursor: default;
+        }
+    }
 
     &-collapse-btn{
         position: absolute;
-        top: 0;
-        right: 2%;
+        top: 0.4rem;
+        right: 1rem;
 
         border: none;
         background: none;
         outline: none;
-        
-        -webkit-text-stroke: 1px rgb(60, 60, 60);
-        color: $btn_hover_color;
-        font-size: 2.3em;
+        font-size: 2rem;
+
+        color: lightgray;
+
+        transform: scaleX(1.5);
 
         &:hover{
             cursor: pointer;
-            color: $btn_color;
         }
 
         &:focus{
@@ -34,67 +70,31 @@
         }
     }
 
-    &-logout-btn{
-        position: absolute;
-        background-color: $post_background;
+    &-options{
+        position: relative;
+        height: 90%;
 
-        border: none;
-        
-        width: 17.9vw;
-
-        padding: 13px;
-
-        transform: translateX(-50%);
-        left: 50%;
-        bottom: 0;
-
-        font-size: 1em;
-        font-weight: bold;
-        color: lightgray;
-
-        &:hover{
-            cursor: pointer;
-            background-color: rgba($border_color, 0.1);
-        }
-    }
-
-    &-profile{
-        position: absolute;
-        top: 5vh;
-        
-        width: 17.9vw;
-        padding: 10px;
-
-        display: flex;
-        align-items: center;
-
-        background: none;
-        border: none;
-        outline: none;
-
-        &-img{
-            border-radius: 50%;
-            width: 2.5vw;
-            height: 2.5vw;
-        }
-
-        &-label{
-            font-size: 1.5em;
-            font-weight: bold;
+        &-option{
+            width: 100%;
+            padding: 1rem;
+    
+            background: none;
+            border: none;
+            outline: none;
+    
+            font-size: 1.3em;
             color: lightgray;
-            margin-left: 10px;
-
+    
+            &.logout-btn{
+                position: absolute;
+                bottom: 0;
+                left: 0;
+            }
+    
             &:hover{
                 cursor: pointer;
+                background-color: rgba($border_color, 0.1);
             }
-        }
-
-        &:hover{
-            cursor: pointer;
-            border: 1px solid $border_color;
-            border-left: none;
-            border-right: none;
-            background-color: rgba($border_color, 0.1);
         }
     }
 }

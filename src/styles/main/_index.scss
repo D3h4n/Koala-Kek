@@ -2,13 +2,10 @@
 .main-page{
     display: grid;
 
-    grid-template-columns: 25vw 50vw 25vw;
-    grid-template-rows: auto;
-}
+    grid-template-columns: 20vw 30vw 25vw;
+    grid-template-rows: 100vh;
 
-/* posts/timeline */
-.timeline{
-    grid-column: 2;
+    justify-content: space-between;
 }
 
 @import '_post';
