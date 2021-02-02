@@ -1,50 +1,50 @@
-.sign-up{
+.sign-up {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &-header {
+    color: white;
+    text-align: center;
+    margin: 30px;
+    margin-bottom: 250px;
+  }
+
+  &-form {
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    &-header{
-        color: white;
-        text-align: center;
-        margin: 30px;
-        margin-bottom: 250px;
+    &-input {
+      margin-bottom: 5px;
+      padding: 3px;
+      height: 3em;
+      width: 20vw;
     }
-    
-    &-form{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    
-        &-input{
-            margin-bottom: 5px;
-            padding: 3px;
-            height: 3em;
-            width: 20vw;
-        }
 
-        &-btns{
-            display: flex;
-            justify-content: space-evenly;
+    &-btns {
+      display: flex;
+      justify-content: space-evenly;
 
-            margin-top: 15px;
+      margin-top: 15px;
 
-            width: 90%;
-        }
-        
-        &-btn{
-            font-size: smaller;
-            font-weight: bold;
-        
-            height: 2rem;
-            width: 45%;
-        
-            background-color: $btn_color;
-            border: 1px solid black;
-            
-            &:hover{
-                cursor: pointer;
-                background-color: $btn_hover_color;
-            }
-        }
+      width: 90%;
     }
+
+    &-btn {
+      font-size: smaller;
+      font-weight: bold;
+
+      height: 2rem;
+      width: 45%;
+
+      background-color: $btn_color;
+      border: 1px solid black;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $btn_hover_color;
+      }
+    }
+  }
 }

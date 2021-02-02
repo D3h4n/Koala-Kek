@@ -1,14 +1,14 @@
 /* MAIN PAGE */
-.main-page{
-    display: grid;
+.main-page {
+  display: grid;
 
-    grid-template-columns: 17vw 30vw 17vw;
-    grid-template-rows: 100vh;
+  grid-template-columns: 17vw 30vw 17vw;
+  grid-template-rows: 100vh;
 
-    justify-content: space-between;
+  justify-content: space-between;
 }
 
-@import '_post';
-@import '_addpost';
-@import '_addimage';
-@import '_sidebar';
+@import "_post";
+@import "_addpost";
+@import "_addimage";
+@import "_sidebar";

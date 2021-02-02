@@ -1,129 +1,128 @@
-.add-image{
-    display: fixed;
+.add-image {
+  display: fixed;
 
-    &-background{
-        position: fixed;
-        width: 100vw;
-        height: 100vh;
+  &-background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
 
-        background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  &-form {
+    width: 50vw;
+    height: 60vh;
+
+    @media (max-width: 900px) {
+      width: 75vw;
     }
 
-    &-form{
-        width: 50vw;
-        height: 60vh;
+    position: fixed;
+    top: 10%;
+    left: 50%;
 
-        @media (max-width:900px){
-            width: 75vw;
+    transform: translateX(-50%);
+    transform: -ms-translateX(-50%);
+
+    background-color: $post_background;
+
+    border: 1px solid $border_color;
+    border-radius: 20px;
+
+    padding: 20px;
+    &-preview {
+      height: 38vh;
+      background-color: $background;
+
+      border: 1px solid $border_color;
+      border-radius: 10px;
+
+      margin: 0 20px;
+      padding: 20px;
+      padding-bottom: 5px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      &-image {
+        height: 30vh;
+
+        @media (max-width: 1200px) {
+          height: auto;
+          width: 40vw;
         }
+      }
 
-        position: fixed;
-        top: 10%;
-        left: 50%;
+      &-size {
+        margin-left: 65%;
 
-        transform: translateX(-50%);
-        transform: -ms-translateX(-50%);
-
-
-        background-color: $post_background;
-        
-        border: 1px solid $border_color;
-        border-radius: 20px;
-
-        padding: 20px;
-        &-preview{
-            height: 38vh;
-            background-color: $background;
-            
-            border: 1px solid $border_color;
-            border-radius: 10px;
-            
-            margin: 0 20px;
-            padding: 20px;
-            padding-bottom: 5px;
-
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-            &-image{
-                height: 30vh;
-
-                @media (max-width: 1200px){
-                    height: auto;
-                    width: 40vw;
-                }
-            }
-
-            &-size{
-                margin-left: 65%;
-                
-                @media (max-width: 1200px){
-                    margin-left: 60%;
-                    font-size: small;
-                }
-            }
+        @media (max-width: 1200px) {
+          margin-left: 60%;
+          font-size: small;
         }
-
-        &-input{
-            position: absolute;
-            left: 5%;
-            bottom: 24%;
-
-            height: 2.5rem;
-            
-            border-radius: 5px;
-            background-color: $background;
-            color: lightgray;
-
-            &::-webkit-file-upload-button{
-                height: 2.5rem;
-                border: none;
-                border-radius: 5px;
-
-                &:hover{
-                    cursor: pointer;
-                }
-            }
-
-            &:hover{
-                cursor: pointer;
-            }
-        }
-
-        &-btn{
-            position: absolute;
-
-            font-size: smaller;
-            font-weight: bold;
-        
-            height: 2.5rem;
-            width: 10%;
-        
-            background-color: $btn_color;
-
-            border: 1px solid black;
-            border-radius: 5px;
-
-            &:hover{
-                cursor: pointer;
-                background-color: $btn_hover_color;
-            }
-
-            &.add-btn{
-                bottom: 5%;
-                right: 5%;
-            }
-
-            &.reset-btn{
-                bottom: 5%;
-                right: 27%;
-            }
-
-            &.cancel-btn{
-                bottom: 5%;
-                right: 16%;
-            }
-        }
+      }
     }
+
+    &-input {
+      position: absolute;
+      left: 5%;
+      bottom: 24%;
+
+      height: 2.5rem;
+
+      border-radius: 5px;
+      background-color: $background;
+      color: lightgray;
+
+      &::-webkit-file-upload-button {
+        height: 2.5rem;
+        border: none;
+        border-radius: 5px;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &-btn {
+      position: absolute;
+
+      font-size: smaller;
+      font-weight: bold;
+
+      height: 2.5rem;
+      width: 10%;
+
+      background-color: $btn_color;
+
+      border: 1px solid black;
+      border-radius: 5px;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $btn_hover_color;
+      }
+
+      &.add-btn {
+        bottom: 5%;
+        right: 5%;
+      }
+
+      &.reset-btn {
+        bottom: 5%;
+        right: 27%;
+      }
+
+      &.cancel-btn {
+        bottom: 5%;
+        right: 16%;
+      }
+    }
+  }
 }

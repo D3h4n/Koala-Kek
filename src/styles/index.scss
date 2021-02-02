@@ -1,20 +1,20 @@
-@import '_vars';
-@import '_globals';
-@import '_signin';
-@import '_signup';
-@import 'main/_index';
+@import "_vars";
+@import "_globals";
+@import "_signin";
+@import "_signup";
+@import "main/_index";
 
-.credit{
-    position: fixed; 
-    bottom: 0; 
-    right: 10px; 
-    color:darkgray; 
-    font-size: 12px;
+.credit {
+  position: fixed;
+  bottom: 0;
+  right: 10px;
+  color: darkgray;
+  font-size: 12px;
 
-    & a{
-        color:darkblue;
-        &:visited{
-            color:darkblue;
-        }
+  & a {
+    color: darkblue;
+    &:visited {
+      color: darkblue;
     }
+  }
 }
