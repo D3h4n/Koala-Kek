@@ -1,10 +1,10 @@
 import React, { useState, useCallback, useEffect } from "react";
 import axios from "axios";
 
-import Timeline from "./Timeline";
-import AddPost from "./AddPost";
+import Timeline from "./timeline/Timeline";
+import AddPost from "./addPost/AddPost";
 import SideBar from "./SideBar";
-import { User, TL_Post } from "../defintions";
+import { User, TL_Post } from "../../defintions";
 import { useHistory } from "react-router-dom";
 
 interface Props {
@@ -17,9 +17,7 @@ export default function Main({ user, getUser }: Props) {
 
   let history = useHistory();
 
-  function handleLogout(
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) {
+  function handleLogout() {
     localStorage.clear();
     history.push("/sign-in");
   }
@@ -31,30 +29,27 @@ export default function Main({ user, getUser }: Props) {
     [posts]
   );
 
-  const getPosts = useCallback(
-    (count: Number) => {
-      axios
-        .get(`${process.env.REACT_APP_API_URI}/posts/`, {
-          params: {
-            id: user._id,
-            count: count,
-          },
-        })
-        .then((res) => JSON.parse(res.data))
-        .then((res: TL_Post[]) => setPosts(res))
-        .catch((err) => console.log(err));
-    },
-    [user]
-  );
+  const getPosts = useCallback((count: Number) => {
+    axios
+      .get(`${process.env.REACT_APP_API_URI}/posts/`, {
+        params: {
+          userID: "none",
+          count,
+        },
+      })
+      .then((res) => JSON.parse(res.data))
+      .then((res: TL_Post[]) => setPosts(res))
+      .catch((err) => console.log(err));
+  }, []);
 
   useEffect(() => {
-    getPosts(-1);
+    getPosts(0);
   }, [getPosts]);
 
   return (
     <div className="main-page">
       <Timeline getUser={getUser} posts={posts} />
-      <SideBar handleLogout={handleLogout} user={user} />
+      <SideBar user={user} handleLogout={handleLogout} />
       <AddPost user={user} handleNewPost={handleNewPost} />
     </div>
   );

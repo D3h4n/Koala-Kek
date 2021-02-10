@@ -2,9 +2,10 @@ import React, { useState, useCallback, useEffect } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
 import axios from "axios";
 
-import SignIn from "./SignIn";
-import SignUp from "./SignUp";
-import Main from "./Main";
+import SignIn from "./signIn/SignIn";
+import SignUp from "./signIn/SignUp";
+import Main from "./main/Main";
+import Profile from "./profile/Profile";
 
 import { defaultUser, User } from "../defintions";
 
@@ -49,7 +50,7 @@ export default function App() {
         setUser(user);
         if (rememberSignIn) {
           localStorage.setItem(
-            process.env.REACT_APP_LOGIN_KEY as string,
+            process.env.REACT_APP_LOGIN_KEY || 'user_id',
             user._id
           );
         }
@@ -62,9 +63,9 @@ export default function App() {
 
   useEffect(() => {
     let id: string | null = localStorage.getItem(
-      process.env.REACT_APP_LOGIN_KEY as string
+      process.env.REACT_APP_LOGIN_KEY || 'user_id'
     );
-    if (id != null) {
+    if (id !== null) {
       getUser(id)
         .then((user) => {
           if (user) {
@@ -80,8 +81,19 @@ export default function App() {
     }
   }, [getUser, history]);
 
-  return (
-    <Switch>
+  return (<Switch>
+      <Route path="/sign-in">
+        <SignIn returnUserID={returnUserID} />
+      </Route>
+      <Route path="/sign-up">
+        <SignUp returnUserID={returnUserID} />
+      </Route>
+      <Route path="/main">
+        <Main user={user} getUser={getUser} />
+      </Route>
+      <Route path="/profile">
+        <Profile user={user}/>
+      </Route>
       <Route exact path="/">
         <h1>Error</h1>
         <p>
@@ -89,15 +101,5 @@ export default function App() {
           server is taking unusually long to respond
         </p>
       </Route>
-      <Route path="/sign-in">
-        <SignIn returnUserID={returnUserID} />
-      </Route>
-      <Route path="/main">
-        <Main user={user} getUser={getUser} />
-      </Route>
-      <Route path="/sign-up">
-        <SignUp returnUserID={returnUserID} />
-      </Route>
-    </Switch>
-  );
+  </Switch>)
 }

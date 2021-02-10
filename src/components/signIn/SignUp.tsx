@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
-import { handleChange } from "./App";
-import { SignUpData } from "../defintions";
+import { handleChange } from "../App";
+import { SignUpData } from "../../defintions";
 
-var md5 = require("md5");
+const md5 = require("md5");
 
 interface Props {
   returnUserID: (userID: string) => void;
@@ -54,7 +54,7 @@ export default function SignUp({ returnUserID }: Props) {
         .then((res) => {
           if (!res) {
             axios
-              .post(`${process.env.REACT_APP_API_URI}/sign-up/`, { ...submit })
+              .put(`${process.env.REACT_APP_API_URI}/sign-up/`, { ...submit })
               .then((res) => JSON.parse(res.data))
               .then((res: string) => {
                 returnUserID(res);
@@ -76,33 +76,47 @@ export default function SignUp({ returnUserID }: Props) {
         {exists ? "That username is already in use" : ""}
       </div>
       <form onSubmit={handleSubmit} className="sign-up-form">
-        <input
-          type="text"
-          className="sign-up-form-input"
-          name="displayName"
-          value={formData.displayName}
-          maxLength={displayNameTextLimit}
-          onChange={(event) => handleChange(event, setData, formData)}
-          placeholder="Display Name"
-        />
-        <input
-          type="text"
-          className="sign-up-form-input"
-          name="userName"
-          value={formData.userName}
-          maxLength={textLimit}
-          onChange={(event) => handleChange(event, setData, formData)}
-          placeholder="Username"
-        />
-        <input
-          type="password"
-          className="sign-up-form-input"
-          name="passWord"
-          value={formData.passWord}
-          maxLength={textLimit}
-          onChange={(event) => handleChange(event, setData, formData)}
-          placeholder="Password"
-        />
+        <label>
+          Display Name:
+          <br />
+          <input
+            type="text"
+            className="sign-up-form-input"
+            name="displayName"
+            value={formData.displayName}
+            maxLength={displayNameTextLimit}
+            onChange={(event) => handleChange(event, setData, formData)}
+            placeholder="Display Name"
+          />
+        </label>
+        <label>
+          <br />
+          Username:
+          <br />
+          <input
+            type="text"
+            className="sign-up-form-input"
+            name="userName"
+            value={formData.userName}
+            maxLength={textLimit}
+            onChange={(event) => handleChange(event, setData, formData)}
+            placeholder="Username"
+          />
+        </label>
+        <label>
+          <br />
+          Password:
+          <br />
+          <input
+            type="password"
+            className="sign-up-form-input"
+            name="passWord"
+            value={formData.passWord}
+            maxLength={textLimit}
+            onChange={(event) => handleChange(event, setData, formData)}
+            placeholder="Password"
+          />
+        </label>
         <div className="sign-up-form-btns">
           <button className="sign-up-form-btn" onClick={() => history.goBack()}>
             Back

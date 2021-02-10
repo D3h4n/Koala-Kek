@@ -3,15 +3,13 @@ import axios from "axios";
 
 import AddImage from "./AddImage";
 
-import { TL_Post, User } from "../defintions";
-import { handleChange } from "./App";
+import { TL_Post, User } from "../../../defintions";
+import { handleChange } from "../../App";
 
 interface Props {
   user: User;
   handleNewPost: (post: TL_Post) => void;
 }
-
-const time = new Date();
 
 export default function AddPost({ user, handleNewPost }: Props) {
   const [isVisible, setVisible] = useState<boolean>(false);
@@ -51,7 +49,6 @@ export default function AddPost({ user, handleNewPost }: Props) {
 
   function handleClear() {
     setFormData({
-      timestamp: time,
       body: "",
       userID: user._id,
       hasImg: false,
@@ -80,7 +77,7 @@ export default function AddPost({ user, handleNewPost }: Props) {
     setFormData({
       ...formData,
       hasImg: true,
-      imgs: [...(formData.imgs ? formData.imgs : []), imgUrl],
+      imgs: [...(formData.imgs || []), imgUrl],
     });
     setDisplayAddImage(false);
   }

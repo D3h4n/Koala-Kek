@@ -18,7 +18,7 @@ apiRouter.post("/posts", postNewPost);
 apiRouter.get("/user", getUser);
 
 apiRouter.post("/sign-in", getSignIn);
-apiRouter.post("/sign-up", postSignUp);
+apiRouter.put("/sign-up", postSignUp);
 
 apiRouter.get("/username", checkUserExists);
 

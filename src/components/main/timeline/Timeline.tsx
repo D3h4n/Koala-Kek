@@ -1,7 +1,7 @@
 import React from "react";
 import Post from "./Post";
 
-import { TL_Post, User } from "../defintions";
+import { TL_Post, User } from "../../../defintions";
 
 interface Props {
   getUser: (id: string) => Promise<User>;

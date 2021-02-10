@@ -21,9 +21,13 @@ const getLen = (count) => {
 };
 
 const getPosts = (req, res) => {
-  const { id, count } = req.query;
+  const postLimit = 20;
+  const { userID, count } = req.query;
 
-  Post.find({}, {})
+  let numPosts = parseInt(count);
+
+  Post.find(userID !== "none" ? { userID } : {})
+    .limit(numPosts > postLimit || numPosts < 1 ? postLimit : numPosts)
     .sort({ createdAt: -1 })
     .then((posts) => res.json(JSON.stringify(posts)))
     .catch((err) => console.error(err));
@@ -49,7 +53,7 @@ const getSignIn = (req, res) => {
 const checkUserExists = (req, res) => {
   let { userName } = req.query;
 
-  Account.find({ userName: userName })
+  Account.find({ userName })
     .then((result) => {
       res.json(result.length > 0);
     })

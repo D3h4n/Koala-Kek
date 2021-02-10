@@ -27,5 +27,5 @@ export interface SignUpData{
     displayName: string
 }
 
-export const defaultIcon = "https://www.xovi.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png";
+export const defaultIcon = "https://res.cloudinary.com/koala-kek/image/upload/v1611439651/koala_kek/default-user-image_lvfd2w.png";
 export const defaultUser = {_id: '-1', userName: '', displayName: 'User Deleted', icon: defaultIcon };

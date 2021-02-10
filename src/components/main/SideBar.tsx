@@ -1,15 +1,19 @@
 import React, { useState } from "react";
-import { User } from "../defintions";
+import { useHistory } from "react-router-dom";
+import { User } from "../../defintions";
 
 interface Props {
-  handleLogout: (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => void;
+  handleLogout: () => void;
   user: User;
 }
 
 export default function SideBar({ handleLogout, user }: Props) {
   const [collapsed, setCollapsed] = useState<boolean>(true);
+  let history = useHistory();
+
+  const handleRedirect = (location: string) => {
+    history.push(location);
+  };
 
   return (
     <div className="sidebar" style={collapsed ? { height: "5.5vh" } : {}}>
@@ -28,11 +32,21 @@ export default function SideBar({ handleLogout, user }: Props) {
         className="sidebar-options"
         style={collapsed ? { display: "none" } : {}}
       >
-        <button className="sidebar-options-option profile">Profile</button>
-        <button className="sidebar-options-option options">Options</button>
+        <button
+          className="sidebar-options-option profile"
+          onClick={() => handleRedirect("/profile")}
+        >
+          Profile
+        </button>
+        <button
+          className="sidebar-options-option options"
+          onClick={() => handleRedirect("/options")}
+        >
+          Options
+        </button>
         <button
           className="sidebar-options-option logout-btn"
-          onClick={handleLogout}
+          onClick={() => handleLogout()}
         >
           Logout
         </button>

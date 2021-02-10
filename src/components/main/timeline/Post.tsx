@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { TL_Post, User, defaultUser } from "../defintions";
+import { TL_Post, User, defaultUser } from "../../../defintions";
 
 interface Props {
   post: TL_Post;
@@ -21,17 +21,19 @@ export default function Post({ post, getUser }: Props) {
       <div className="post-user-icon">
         <img className="post-user-icon-img" src={user.icon} alt="user icon" />
       </div>
+
       <h3 className="post-user-name">{user.displayName}</h3>
+
       <hr className="post-hr" />
+
       <pre className="post-text">{post.body}</pre>
-      {post.hasImg ? (
+
+      {post.hasImg && (
         <div className="post-image-container">
           {post.imgs?.map((image, idx) => (
             <img key={idx} src={image} alt="post" className="post-image" />
           ))}
         </div>
-      ) : (
-        ""
       )}
     </div>
   );

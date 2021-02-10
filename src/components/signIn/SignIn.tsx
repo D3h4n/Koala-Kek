@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 
-import { handleChange } from "./App";
-import { defaultIcon, Login } from "../defintions";
+import { handleChange } from "../App";
+import { defaultIcon, Login } from "../../defintions";
 
 const md5 = require("md5");
 
@@ -57,6 +57,7 @@ export default function SignIn({ returnUserID }: Props) {
       </p>
 
       <form onSubmit={handleSubmit} className="sign-in-form">
+        <label>Username:</label>
         <input
           className="sign-in-form-input"
           type="text"
@@ -66,6 +67,7 @@ export default function SignIn({ returnUserID }: Props) {
           maxLength={textLimit}
           placeholder="Username"
         />
+        <label>Password:</label>
         <input
           className="sign-in-form-input"
           type="password"
