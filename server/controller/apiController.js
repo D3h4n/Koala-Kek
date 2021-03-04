@@ -1,8 +1,9 @@
+const { ObjectId } = require("mongodb");
+const cloudinary = require("../utils/cloudinary");
 const Account = require("../models/Account");
 const Post = require("../models/Post");
 const defaultIcon =
   "https://res.cloudinary.com/koala-kek/image/upload/v1611439651/koala_kek/default-user-image_lvfd2w.png";
-const cloudinary = require("../utils/cloudinary");
 
 const getUser = (req, res) => {
   let { id } = req.query;
@@ -101,6 +102,15 @@ const postImage = (req, res) => {
   }
 };
 
+const deletePost = (req, res) => {
+  Post.deleteOne({ _id: req.query.id })
+    .then(() => res.json(JSON.stringify(req.query.id)))
+    .catch((err) => {
+      console.error(err);
+      res.json(null);
+    });
+};
+
 module.exports = {
   getUser,
   getPosts,
@@ -109,4 +119,5 @@ module.exports = {
   postSignUp,
   checkUserExists,
   postImage,
+  deletePost,
 };

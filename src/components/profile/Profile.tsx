@@ -34,6 +34,20 @@ export default function Profile({ user }: Props) {
     [user]
   );
 
+  const handleDeletePost = (postId: string) => {
+    axios
+      .delete(`${process.env.REACT_APP_API_URI}/posts/`, {
+        params: {
+          id: postId,
+        },
+      })
+      .then((res) => JSON.parse(res.data))
+      .then((res) =>
+        setPosts((prevState) => prevState.filter((post) => post._id !== res))
+      )
+      .catch(console.error);
+  };
+
   return (
     <div className="profile">
       <h1>Profile View</h1>
@@ -41,12 +55,18 @@ export default function Profile({ user }: Props) {
         <img className="sidebar-user-img" src={user.icon} alt="profile pic" />
         <h3 className="sidebar-user-display-name">{user.displayName}</h3>
       </div>
-      {posts.map((post, idx) => (
-        <div className="profile-post">
-          <Post key={idx} post={post} getUser={getUser} />
-          <button className="profile-post-del-button">X</button>
-        </div>
-      ))}
+      {posts.length &&
+        posts.map((post, idx) => (
+          <div className="profile-post">
+            <Post key={idx} post={post} getUser={getUser} />
+            <button
+              className="profile-post-del-button"
+              onClick={() => handleDeletePost(post._id!)}
+            >
+              X
+            </button>
+          </div>
+        ))}
       <button onClick={() => history.goBack()}>Back</button>
     </div>
   );

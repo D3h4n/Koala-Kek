@@ -10,10 +10,12 @@ const {
   postSignUp,
   checkUserExists,
   postImage,
+  deletePost,
 } = require(path.join(__dirname, "..", "controller", "apiController"));
 
 apiRouter.get("/posts", getPosts);
 apiRouter.post("/posts", postNewPost);
+apiRouter.delete("/posts", deletePost);
 
 apiRouter.get("/user", getUser);
 
