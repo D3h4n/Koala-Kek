@@ -1,3 +1,9 @@
+@forward "_post";
+@forward "_addpost";
+@forward "_addimage";
+@forward "_sidebar";
+@forward "_timeline";
+
 /* MAIN PAGE */
 .main-page {
   display: grid;
@@ -7,9 +13,3 @@
 
   justify-content: space-between;
 }
-
-@import "_post";
-@import "_addpost";
-@import "_addimage";
-@import "_sidebar";
-@import "_timeline";

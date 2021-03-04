@@ -35,17 +35,17 @@ export default function Profile({ user }: Props) {
   );
 
   return (
-    <div>
+    <div className="profile">
       <h1>Profile View</h1>
       <div className="sidebar-user">
         <img className="sidebar-user-img" src={user.icon} alt="profile pic" />
         <h3 className="sidebar-user-display-name">{user.displayName}</h3>
       </div>
       {posts.map((post, idx) => (
-        <>
+        <div className="profile-post">
           <Post key={idx} post={post} getUser={getUser} />
-          <button>X</button>
-        </>
+          <button className="profile-post-del-button">X</button>
+        </div>
       ))}
       <button onClick={() => history.goBack()}>Back</button>
     </div>

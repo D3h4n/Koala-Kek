@@ -29,7 +29,8 @@
   },
   "scripts": {
     "start": "node ./server/index",
-    "deploy-dev": "react-scripts build && (nodemon ./server/index)",
+    "build-sass": "sass src/styles/index.scss src/css/index.css",
+    "deploy-dev": "npm run build-sass && react-scripts build && (nodemon ./server/index)",
     "serve": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -55,5 +56,8 @@
   },
   "engines": {
     "node": "v14.11.0"
+  },
+  "devDependencies": {
+    "sass": "^1.32.8"
   }
 }

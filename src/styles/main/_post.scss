@@ -1,3 +1,5 @@
+@use "../vars" as *;
+
 .post {
   display: grid;
   grid-template-columns: 5% 95%;

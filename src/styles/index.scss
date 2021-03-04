@@ -1,8 +1,8 @@
-@import "_vars";
-@import "_globals";
-@import "_signin";
-@import "_signup";
-@import "main/_index";
+@use "_globals";
+@use "_signin";
+@use "_signup";
+@use "main";
+@use "profile";
 
 .credit {
   position: fixed;
