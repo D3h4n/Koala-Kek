@@ -85,15 +85,19 @@ export default function App() {
       <Route path="/sign-in">
         <SignIn returnUserID={returnUserID} />
       </Route>
+
       <Route path="/sign-up">
         <SignUp returnUserID={returnUserID} />
       </Route>
+
       <Route path="/main">
         <Main user={user} getUser={getUser} />
       </Route>
+
       <Route path="/profile">
         <Profile user={user}/>
       </Route>
+      
       <Route exact path="/">
         <h1>Error</h1>
         <p>
